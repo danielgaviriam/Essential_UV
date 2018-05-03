@@ -41,7 +41,7 @@ defined('MOODLE_INTERNAL') || die;
 function theme_essential_uv_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
     static $theme;
     if (empty($theme)) {
-        $theme = theme_config::load('essential');
+        $theme = theme_config::load('essential_uv');
     }
     if ($context->contextlevel == CONTEXT_SYSTEM) {
         // By default, theme files must be cache-able by both browsers and proxies.  From 'More' theme.

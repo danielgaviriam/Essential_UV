@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2017 Gareth J Barnard
  * @copyright   2016 Gareth J Barnard
  * @copyright   2015 Gareth J Barnard
@@ -36,27 +36,28 @@ $THEME->parents = array('bootstrapbase');
 $THEME->parents_exclude_sheets = array('bootstrapbase' => array('moodle', 'editor'));
 
 $THEME->sheets[] = 'fontawesome';
-$THEME->sheets[] = 'essential';
+$THEME->sheets[] = 'essential_uv';
 $THEME->sheets[] = 'bootstrap-pix';
-$THEME->sheets[] = 'essential-settings';
+$THEME->sheets[] = 'essential_uv-settings';
 
 if ((get_config('theme_essential_uv', 'enablealternativethemecolors1')) ||
-        (get_config('theme_essential', 'enablealternativethemecolors2')) ||
-        (get_config('theme_essential', 'enablealternativethemecolors3')) ||
-        (get_config('theme_essential', 'enablealternativethemecolors4'))
+        (get_config('theme_essential_uv', 'enablealternativethemecolors2')) ||
+        (get_config('theme_essential_uv', 'enablealternativethemecolors3')) ||
+        (get_config('theme_essential_uv', 'enablealternativethemecolors4'))
 ) {
-    $THEME->sheets[] = 'essential-alternative';
+    $THEME->sheets[] = 'essential_uv-alternative';
 }
 
 if (get_config('theme_essential_uv', 'customscrollbars')) {
-    $THEME->sheets[] = 'essential-scrollbars';
+    
+    $THEME->sheets[] = 'essential_uv-scrollbars';
 }
 
 $THEME->sheets[] = 'custom';
 
 $THEME->supportscssoptimisation = false;
 
-$THEME->javascripts_footer = array('essential');
+$THEME->javascripts_footer = array('essential_uv');
 $THEME->enable_dock = true;
 $THEME->javascripts_footer[] = 'dock';
 
@@ -70,7 +71,7 @@ if (get_config('theme_essential_uv', 'frontpagemiddleblocks') > 0) {
 if (get_config('theme_essential_uv', 'fppagetopblocks') > 0) {
     $fpaddregions[] = 'page-top';
 }
-if (get_config('theme_essential', 'haveheaderblock') > 0) {
+if (get_config('theme_essential_uv', 'haveheaderblock') > 0) {
     $baseregions[] = 'header';
     $fpaddregions[] = 'header';
 }
@@ -196,6 +197,6 @@ $THEME->layouts = array(
 );
 
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
-$THEME->csspostprocess = 'theme_essential_process_css';
+$THEME->csspostprocess = 'theme_essential_uv_process_css';
 
 $THEME->iconsystem = '\\theme_essential_uv\\output\\icon_system_fontawesome';
