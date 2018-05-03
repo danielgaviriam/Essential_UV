@@ -28,7 +28,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$THEME->name = 'essential';
+$THEME->name = 'essential_uv';
 
 $THEME->doctype = 'html5';
 $THEME->yuicssmodules = array();
@@ -40,7 +40,7 @@ $THEME->sheets[] = 'essential';
 $THEME->sheets[] = 'bootstrap-pix';
 $THEME->sheets[] = 'essential-settings';
 
-if ((get_config('theme_essential', 'enablealternativethemecolors1')) ||
+if ((get_config('theme_essential_uv', 'enablealternativethemecolors1')) ||
         (get_config('theme_essential', 'enablealternativethemecolors2')) ||
         (get_config('theme_essential', 'enablealternativethemecolors3')) ||
         (get_config('theme_essential', 'enablealternativethemecolors4'))
@@ -48,7 +48,7 @@ if ((get_config('theme_essential', 'enablealternativethemecolors1')) ||
     $THEME->sheets[] = 'essential-alternative';
 }
 
-if (get_config('theme_essential', 'customscrollbars')) {
+if (get_config('theme_essential_uv', 'customscrollbars')) {
     $THEME->sheets[] = 'essential-scrollbars';
 }
 
@@ -64,10 +64,10 @@ $THEME->editor_sheets = array('editor', 'custom');
 
 $baseregions = array('footer-left', 'footer-middle', 'footer-right');
 $fpaddregions = array();
-if (get_config('theme_essential', 'frontpagemiddleblocks') > 0) {
+if (get_config('theme_essential_uv', 'frontpagemiddleblocks') > 0) {
     $fpaddregions[] = 'home';
 }
-if (get_config('theme_essential', 'fppagetopblocks') > 0) {
+if (get_config('theme_essential_uv', 'fppagetopblocks') > 0) {
     $fpaddregions[] = 'page-top';
 }
 if (get_config('theme_essential', 'haveheaderblock') > 0) {
@@ -76,7 +76,7 @@ if (get_config('theme_essential', 'haveheaderblock') > 0) {
 }
 $onecolumnregions = array_merge($baseregions);
 $standardregions = array_merge(array('side-pre'), $baseregions);
-if (get_config('theme_essential', 'pagetopblocks')) {
+if (get_config('theme_essential_uv', 'pagetopblocks')) {
     $onecolumnregions[] = 'page-top';
     $standardregions[] = 'page-top';
 }
@@ -198,4 +198,4 @@ $THEME->layouts = array(
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->csspostprocess = 'theme_essential_process_css';
 
-$THEME->iconsystem = '\\theme_essential\\output\\icon_system_fontawesome';
+$THEME->iconsystem = '\\theme_essential_uv\\output\\icon_system_fontawesome';
