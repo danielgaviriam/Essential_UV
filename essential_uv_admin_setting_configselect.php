@@ -18,7 +18,7 @@
  * Config select setting that sets the default on first run.  Proof of concept before tracker issue.
  *
  * @package    theme
- * @subpackage essential
+ * @subpackage essential_uv
  * @copyright  &copy; 2016-onwards G J Barnard.
  * @author     G J Barnard - {@link http://moodle.org/user/profile.php?id=442195}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-class essential_admin_setting_configselect extends admin_setting_configselect {
+class essential_uv_admin_setting_configselect extends admin_setting_configselect {
     /**
      * Returns XHTML select field
      *

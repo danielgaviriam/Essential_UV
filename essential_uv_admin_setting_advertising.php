@@ -18,7 +18,7 @@
  * Config advertising setting.  Display only no storage.
  *
  * @package    theme
- * @subpackage essential
+ * @subpackage essential_uv
  * @copyright  &copy; 2017-onwards G J Barnard.
  * @author     G J Barnard - {@link http://moodle.org/user/profile.php?id=442195}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-class essential_admin_setting_advertising extends admin_setting_heading {
+class essential_uv_admin_setting_advertising extends admin_setting_heading {
 
     protected $linkurl;
     protected $imageurl;
@@ -62,6 +62,6 @@ class essential_admin_setting_advertising extends admin_setting_heading {
         $context->linkurl = $this->linkurl;
         $context->advertimage = $this->imageurl;
         $context->advertalttext = $this->imagealttext;
-        return $OUTPUT->render_from_template('theme_essential/admin_setting_advertising', $context);
+        return $OUTPUT->render_from_template('theme_essential_uv/admin_setting_advertising', $context);
     }
 }

@@ -17,7 +17,7 @@
 /**
  * Essential is a clean and customizable theme.
  *
- * @package     theme_essential_uv_uv
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2014 Gareth J Barnard, David Bezemer
  * @copyright   2013 Julian Ridden
@@ -38,7 +38,7 @@ defined('MOODLE_INTERNAL') || die;
  * @param array $options.
  * @return bool.
  */
-function theme_essential_uv_uv_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+function theme_essential_uv_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
     static $theme;
     if (empty($theme)) {
         $theme = theme_config::load('essential');
@@ -85,7 +85,7 @@ function theme_essential_uv_uv_pluginfile($course, $cm, $context, $filearea, $ar
     }
 }
 
-function theme_essential_uv_uv_serve_css($filename) {
+function theme_essential_uv_serve_css($filename) {
     global $CFG;
 
     if (file_exists("{$CFG->dirroot}/theme/essential/style/")) {
@@ -110,12 +110,12 @@ function theme_essential_uv_uv_serve_css($filename) {
     $etagheader = (isset($_SERVER['HTTP_IF_NONE_MATCH']) ? trim($_SERVER['HTTP_IF_NONE_MATCH']) : false);
 
     if ((($ifmodifiedsince) && (strtotime($ifmodifiedsince) == $lastmodified)) || $etagheader == $etagfile) {
-        theme_essential_uv_uv_send_unmodified($lastmodified, $etagfile);
+        theme_essential_uv_send_unmodified($lastmodified, $etagfile);
     }
-    theme_essential_uv_uv_send_cached_css($thestylepath, $filename, $lastmodified, $etagfile);
+    theme_essential_uv_send_cached_css($thestylepath, $filename, $lastmodified, $etagfile);
 }
 
-function theme_essential_uv_uv_send_unmodified($lastmodified, $etag) {
+function theme_essential_uv_send_unmodified($lastmodified, $etag) {
     $lifetime = 60 * 60 * 24 * 60;
     header('HTTP/1.1 304 Not Modified');
     header('Expires: ' . gmdate('D, d M Y H:i:s', time() + $lifetime) . ' GMT');
@@ -128,7 +128,7 @@ function theme_essential_uv_uv_send_unmodified($lastmodified, $etag) {
     die;
 }
 
-function theme_essential_uv_uv_send_cached_css($path, $filename, $lastmodified, $etag) {
+function theme_essential_uv_send_cached_css($path, $filename, $lastmodified, $etag) {
     global $CFG;
     require_once($CFG->dirroot . '/lib/configonlylib.php'); // For min_enable_zlib_compression().
     // 60 days only - the revision may get incremented quite often.
@@ -152,150 +152,150 @@ function theme_essential_uv_uv_send_cached_css($path, $filename, $lastmodified, 
     die;
 }
 
-function theme_essential_uv_uv_process_css($css, $theme) {
+function theme_essential_uv_process_css($css, $theme) {
     global $PAGE;
-    $outputus = $PAGE->get_renderer('theme_essential_uv_uv', 'core');
-    \theme_essential_uv_uv\toolbox::set_core_renderer($outputus);
+    $outputus = $PAGE->get_renderer('theme_essential_uv', 'core');
+    \theme_essential_uv\toolbox::set_core_renderer($outputus);
 
     // Set the theme width.
-    $pagewidth = \theme_essential_uv_uv\toolbox::get_setting('pagewidth');
-    $css = \theme_essential_uv_uv\toolbox::set_pagewidth($css, $pagewidth);
+    $pagewidth = \theme_essential_uv\toolbox::get_setting('pagewidth');
+    $css = \theme_essential_uv\toolbox::set_pagewidth($css, $pagewidth);
 
     // Set the theme font.
-    $css = \theme_essential_uv_uv\toolbox::set_font($css, 'heading', \theme_essential_uv_uv\toolbox::get_setting('fontnameheading'));
-    $css = \theme_essential_uv_uv\toolbox::set_font($css, 'body', \theme_essential_uv_uv\toolbox::get_setting('fontnamebody'));
+    $css = \theme_essential_uv\toolbox::set_font($css, 'heading', \theme_essential_uv\toolbox::get_setting('fontnameheading'));
+    $css = \theme_essential_uv\toolbox::set_font($css, 'body', \theme_essential_uv\toolbox::get_setting('fontnamebody'));
 
     // Set the theme colour.
-    $themecolor = \theme_essential_uv_uv\toolbox::get_setting('themecolor');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themecolor, '[[setting:themecolor]]', '#30add1');
+    $themecolor = \theme_essential_uv\toolbox::get_setting('themecolor');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themecolor, '[[setting:themecolor]]', '#30add1');
 
     // Input focus colour.
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themecolor, '[[setting:inputfocusbordercolor]]', '#30add1', '0.8');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themecolor, '[[setting:inputfocusshadowcolor]]', '#30add1', '0.6');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themecolor, '[[setting:inputfocusbordercolor]]', '#30add1', '0.8');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themecolor, '[[setting:inputfocusshadowcolor]]', '#30add1', '0.6');
 
     // Set the theme text colour.
-    $themetextcolor = \theme_essential_uv_uv\toolbox::get_setting('themetextcolor');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themetextcolor, '[[setting:themetextcolor]]', '#047797');
+    $themetextcolor = \theme_essential_uv\toolbox::get_setting('themetextcolor');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themetextcolor, '[[setting:themetextcolor]]', '#047797');
 
     // Set the theme url colour.
-    $themeurlcolor = \theme_essential_uv_uv\toolbox::get_setting('themeurlcolor');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themeurlcolor, '[[setting:themeurlcolor]]', '#FF5034');
+    $themeurlcolor = \theme_essential_uv\toolbox::get_setting('themeurlcolor');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themeurlcolor, '[[setting:themeurlcolor]]', '#FF5034');
 
     // Set the theme hover colour.
-    $themehovercolor = \theme_essential_uv_uv\toolbox::get_setting('themehovercolor');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themehovercolor, '[[setting:themehovercolor]]', '#F32100');
+    $themehovercolor = \theme_essential_uv\toolbox::get_setting('themehovercolor');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themehovercolor, '[[setting:themehovercolor]]', '#F32100');
 
     // Set the theme header text colour.
-    $themetextcolor = \theme_essential_uv_uv\toolbox::get_setting('headertextcolor');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themetextcolor, '[[setting:headertextcolor]]', '#217a94');
+    $themetextcolor = \theme_essential_uv\toolbox::get_setting('headertextcolor');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themetextcolor, '[[setting:headertextcolor]]', '#217a94');
 
     // Set the theme icon colour.
-    $themeiconcolor = \theme_essential_uv_uv\toolbox::get_setting('themeiconcolor');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themeiconcolor, '[[setting:themeiconcolor]]', '#30add1');
+    $themeiconcolor = \theme_essential_uv\toolbox::get_setting('themeiconcolor');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themeiconcolor, '[[setting:themeiconcolor]]', '#30add1');
 
     // Set the theme side-pre block background colour.
-    $themesidepreblockbackgroundcolour = \theme_essential_uv_uv\toolbox::get_setting('themesidepreblockbackgroundcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themesidepreblockbackgroundcolour, '[[setting:themesidepreblockbackgroundcolour]]', '#ffffff');
+    $themesidepreblockbackgroundcolour = \theme_essential_uv\toolbox::get_setting('themesidepreblockbackgroundcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themesidepreblockbackgroundcolour, '[[setting:themesidepreblockbackgroundcolour]]', '#ffffff');
 
     // Set the theme side-pre block text colour.
-    $themesidepreblocktextcolour = \theme_essential_uv_uv\toolbox::get_setting('themesidepreblocktextcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themesidepreblocktextcolour, '[[setting:themesidepreblocktextcolour]]', '#217a94');
+    $themesidepreblocktextcolour = \theme_essential_uv\toolbox::get_setting('themesidepreblocktextcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themesidepreblocktextcolour, '[[setting:themesidepreblocktextcolour]]', '#217a94');
 
     // Set the theme side-pre block url colour.
-    $themesidepreblockurlcolour = \theme_essential_uv_uv\toolbox::get_setting('themesidepreblockurlcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themesidepreblockurlcolour, '[[setting:themesidepreblockurlcolour]]', '#943b21');
+    $themesidepreblockurlcolour = \theme_essential_uv\toolbox::get_setting('themesidepreblockurlcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themesidepreblockurlcolour, '[[setting:themesidepreblockurlcolour]]', '#943b21');
 
     // Set the theme side-pre block url hover colour.
-    $themesidepreblockhovercolour = \theme_essential_uv_uv\toolbox::get_setting('themesidepreblockhovercolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themesidepreblockhovercolour, '[[setting:themesidepreblockhovercolour]]', '#6a2a18');
+    $themesidepreblockhovercolour = \theme_essential_uv\toolbox::get_setting('themesidepreblockhovercolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themesidepreblockhovercolour, '[[setting:themesidepreblockhovercolour]]', '#6a2a18');
 
     // Set the theme default button text colour.
-    $themedefaultbuttontextcolour = \theme_essential_uv_uv\toolbox::get_setting('themedefaultbuttontextcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themedefaultbuttontextcolour,
+    $themedefaultbuttontextcolour = \theme_essential_uv\toolbox::get_setting('themedefaultbuttontextcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themedefaultbuttontextcolour,
         '[[setting:themedefaultbuttontextcolour]]', '#ffffff');
 
     // Set the theme default button text hover colour.
-    $themedefaultbuttontexthovercolour = \theme_essential_uv_uv\toolbox::get_setting('themedefaultbuttontexthovercolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themedefaultbuttontexthovercolour,
+    $themedefaultbuttontexthovercolour = \theme_essential_uv\toolbox::get_setting('themedefaultbuttontexthovercolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themedefaultbuttontexthovercolour,
         '[[setting:themedefaultbuttontexthovercolour]]', '#ffffff');
 
     // Set the theme default button background colour.
-    $themedefaultbuttonbackgroundcolour = \theme_essential_uv_uv\toolbox::get_setting('themedefaultbuttonbackgroundcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themedefaultbuttonbackgroundcolour,
+    $themedefaultbuttonbackgroundcolour = \theme_essential_uv\toolbox::get_setting('themedefaultbuttonbackgroundcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themedefaultbuttonbackgroundcolour,
         '[[setting:themedefaultbuttonbackgroundcolour]]', '#30add1');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themedefaultbuttonbackgroundcolour,
+    $css = \theme_essential_uv\toolbox::set_color($css, $themedefaultbuttonbackgroundcolour,
         '[[setting:themedefaultbuttonbackgroundcolourimage]]', '#30add1');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css,
-        \theme_essential_uv_uv\toolbox::hexadjust($themedefaultbuttonbackgroundcolour, 10),
+    $css = \theme_essential_uv\toolbox::set_color($css,
+        \theme_essential_uv\toolbox::hexadjust($themedefaultbuttonbackgroundcolour, 10),
         '[[setting:themedefaultbuttonbackgroundcolourrgba]]', '#30add1', '0.25');
 
     // Set the theme default button background hover colour.
-    $themedefaultbuttonbackgroundhovercolour = \theme_essential_uv_uv\toolbox::get_setting('themedefaultbuttonbackgroundhovercolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themedefaultbuttonbackgroundhovercolour,
+    $themedefaultbuttonbackgroundhovercolour = \theme_essential_uv\toolbox::get_setting('themedefaultbuttonbackgroundhovercolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themedefaultbuttonbackgroundhovercolour,
         '[[setting:themedefaultbuttonbackgroundhovercolour]]', '#3ad4ff');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themedefaultbuttonbackgroundhovercolour,
+    $css = \theme_essential_uv\toolbox::set_color($css, $themedefaultbuttonbackgroundhovercolour,
         '[[setting:themedefaultbuttonbackgroundhovercolourimage]]', '#3ad4ff');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css,
-        \theme_essential_uv_uv\toolbox::hexadjust($themedefaultbuttonbackgroundhovercolour, 10),
+    $css = \theme_essential_uv\toolbox::set_color($css,
+        \theme_essential_uv\toolbox::hexadjust($themedefaultbuttonbackgroundhovercolour, 10),
         '[[setting:themedefaultbuttonbackgroundhovercolourrgba]]', '#3ad4ff', '0.25');
 
     // Set the theme navigation colour.
-    $themenavcolor = \theme_essential_uv_uv\toolbox::get_setting('themenavcolor');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themenavcolor, '[[setting:themenavcolor]]', '#ffffff');
+    $themenavcolor = \theme_essential_uv\toolbox::get_setting('themenavcolor');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themenavcolor, '[[setting:themenavcolor]]', '#ffffff');
 
     // Set the theme stripe text colour.
-    $themestripetextcolour = \theme_essential_uv_uv\toolbox::get_setting('themestripetextcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themestripetextcolour, '[[setting:themestripetextcolour]]', '#ffffff');
+    $themestripetextcolour = \theme_essential_uv\toolbox::get_setting('themestripetextcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themestripetextcolour, '[[setting:themestripetextcolour]]', '#ffffff');
 
     // Set the theme stripe background colour.
-    $themestripebackgroundcolour = \theme_essential_uv_uv\toolbox::get_setting('themestripebackgroundcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themestripebackgroundcolour, '[[setting:themestripebackgroundcolour]]', '#ff9a34');
+    $themestripebackgroundcolour = \theme_essential_uv\toolbox::get_setting('themestripebackgroundcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themestripebackgroundcolour, '[[setting:themestripebackgroundcolour]]', '#ff9a34');
 
-    $themestripeurlcolour = \theme_essential_uv_uv\toolbox::get_setting('themestripeurlcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themestripeurlcolour, '[[setting:themestripeurlcolour]]', '#25849F');
+    $themestripeurlcolour = \theme_essential_uv\toolbox::get_setting('themestripeurlcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themestripeurlcolour, '[[setting:themestripeurlcolour]]', '#25849F');
 
     // Set the theme Quiz 'Submit all and finish' colours.
-    $themequizsubmittextcolour = \theme_essential_uv_uv\toolbox::get_setting('themequizsubmittextcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themequizsubmittextcolour,
+    $themequizsubmittextcolour = \theme_essential_uv\toolbox::get_setting('themequizsubmittextcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themequizsubmittextcolour,
         '[[setting:themequizsubmittextcolour]]', '#ffffff');
 
-    $themequizsubmittexthovercolour = \theme_essential_uv_uv\toolbox::get_setting('themequizsubmittexthovercolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themequizsubmittexthovercolour,
+    $themequizsubmittexthovercolour = \theme_essential_uv\toolbox::get_setting('themequizsubmittexthovercolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themequizsubmittexthovercolour,
         '[[setting:themequizsubmittexthovercolour]]', '#ffffff');
 
-    $themequizsubmitbackgroundcolour = \theme_essential_uv_uv\toolbox::get_setting('themequizsubmitbackgroundcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themequizsubmitbackgroundcolour,
+    $themequizsubmitbackgroundcolour = \theme_essential_uv\toolbox::get_setting('themequizsubmitbackgroundcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themequizsubmitbackgroundcolour,
         '[[setting:themequizsubmitbackgroundcolour]]', '#ff9a34');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themequizsubmitbackgroundcolour,
+    $css = \theme_essential_uv\toolbox::set_color($css, $themequizsubmitbackgroundcolour,
         '[[setting:themequizsubmitbackgroundcolourimage]]', '#ff9a34');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css,
-        \theme_essential_uv_uv\toolbox::hexadjust($themequizsubmitbackgroundcolour, 10),
+    $css = \theme_essential_uv\toolbox::set_color($css,
+        \theme_essential_uv\toolbox::hexadjust($themequizsubmitbackgroundcolour, 10),
         '[[setting:themequizsubmitbackgroundcolourrgba]]', '#ff9a34', '0.25');
 
-    $themequizsubmitbackgroundhovercolour = \theme_essential_uv_uv\toolbox::get_setting('themequizsubmitbackgroundhovercolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themequizsubmitbackgroundhovercolour,
+    $themequizsubmitbackgroundhovercolour = \theme_essential_uv\toolbox::get_setting('themequizsubmitbackgroundhovercolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $themequizsubmitbackgroundhovercolour,
         '[[setting:themequizsubmitbackgroundhovercolour]]', '#ffaf60');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $themequizsubmitbackgroundhovercolour,
+    $css = \theme_essential_uv\toolbox::set_color($css, $themequizsubmitbackgroundhovercolour,
         '[[setting:themequizsubmitbackgroundhovercolourimage]]', '#ffaf60');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css,
-        \theme_essential_uv_uv\toolbox::hexadjust($themequizsubmitbackgroundhovercolour, 10),
+    $css = \theme_essential_uv\toolbox::set_color($css,
+        \theme_essential_uv\toolbox::hexadjust($themequizsubmitbackgroundhovercolour, 10),
         '[[setting:themequizsubmitbackgroundhovercolourrgba]]', '#ffaf60', '0.25');
 
     // Enrolled and not accessed course background colour.
-    $mycoursesorderenrolbackcolour = \theme_essential_uv_uv\toolbox::get_setting('mycoursesorderenrolbackcolour');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $mycoursesorderenrolbackcolour,
+    $mycoursesorderenrolbackcolour = \theme_essential_uv\toolbox::get_setting('mycoursesorderenrolbackcolour');
+    $css = \theme_essential_uv\toolbox::set_color($css, $mycoursesorderenrolbackcolour,
         '[[setting:mycoursesorderenrolbackcolour]]', '#a3ebff');
 
     // Set the footer colour.
-    $footercolor = \theme_essential_uv_uv\toolbox::get_setting('footercolor');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $footercolor, '[[setting:footercolor]]', '#30add1', '0.95');
+    $footercolor = \theme_essential_uv\toolbox::get_setting('footercolor');
+    $css = \theme_essential_uv\toolbox::set_color($css, $footercolor, '[[setting:footercolor]]', '#30add1', '0.95');
 
     // Set the footer text colour.
-    $footertextcolor = \theme_essential_uv_uv\toolbox::get_setting('footertextcolor');
-    $css = \theme_essential_uv_uv\toolbox::set_color($css, $footertextcolor, '[[setting:footertextcolor]]', '#ffffff');
+    $footertextcolor = \theme_essential_uv\toolbox::get_setting('footertextcolor');
+    $css = \theme_essential_uv\toolbox::set_color($css, $footertextcolor, '[[setting:footertextcolor]]', '#ffffff');
 
     // Set the footer block background colour.
-    $footerheadingcolor = \theme_essential_uv_uv\toolbox::get_setting('footerblockbackgroundcolour');
+    $footerheadingcolor = \theme_essential_uv\toolbox::get_setting('footerblockbackgroundcolour');
     $css = \theme_essential_uv\toolbox::set_color($css, $footerheadingcolor, '[[setting:footerblockbackgroundcolour]]',
                     '#cccccc');
 
