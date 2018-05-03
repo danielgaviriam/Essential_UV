@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2017 Gareth J Barnard
  * @copyright   2016 Gareth J Barnard
  * @copyright   2015 Gareth J Barnard
@@ -28,7 +28,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$THEME->name = 'essential';
+$THEME->name = 'essential_uv';
 
 $THEME->doctype = 'html5';
 $THEME->yuicssmodules = array();
@@ -36,27 +36,27 @@ $THEME->parents = array('bootstrapbase');
 $THEME->parents_exclude_sheets = array('bootstrapbase' => array('moodle', 'editor'));
 
 $THEME->sheets[] = 'fontawesome';
-$THEME->sheets[] = 'essential';
+$THEME->sheets[] = 'essential_uv';
 $THEME->sheets[] = 'bootstrap-pix';
-$THEME->sheets[] = 'essential-settings';
+$THEME->sheets[] = 'essential_uv-settings';
 
-if ((get_config('theme_essential', 'enablealternativethemecolors1')) ||
-        (get_config('theme_essential', 'enablealternativethemecolors2')) ||
-        (get_config('theme_essential', 'enablealternativethemecolors3')) ||
-        (get_config('theme_essential', 'enablealternativethemecolors4'))
+if ((get_config('theme_essential_uv', 'enablealternativethemecolors1')) ||
+        (get_config('theme_essential_uv', 'enablealternativethemecolors2')) ||
+        (get_config('theme_essential_uv', 'enablealternativethemecolors3')) ||
+        (get_config('theme_essential_uv', 'enablealternativethemecolors4'))
 ) {
-    $THEME->sheets[] = 'essential-alternative';
+    $THEME->sheets[] = 'essential_uv-alternative';
 }
 
-if (get_config('theme_essential', 'customscrollbars')) {
-    $THEME->sheets[] = 'essential-scrollbars';
+if (get_config('theme_essential_uv', 'customscrollbars')) {
+    $THEME->sheets[] = 'essential_uv-scrollbars';
 }
 
 $THEME->sheets[] = 'custom';
 
 $THEME->supportscssoptimisation = false;
 
-$THEME->javascripts_footer = array('essential');
+$THEME->javascripts_footer = array('essential_uv');
 $THEME->enable_dock = true;
 $THEME->javascripts_footer[] = 'dock';
 
@@ -64,19 +64,19 @@ $THEME->editor_sheets = array('editor', 'custom');
 
 $baseregions = array('footer-left', 'footer-middle', 'footer-right');
 $fpaddregions = array();
-if (get_config('theme_essential', 'frontpagemiddleblocks') > 0) {
+if (get_config('theme_essential_uv', 'frontpagemiddleblocks') > 0) {
     $fpaddregions[] = 'home';
 }
-if (get_config('theme_essential', 'fppagetopblocks') > 0) {
+if (get_config('theme_essential_uv', 'fppagetopblocks') > 0) {
     $fpaddregions[] = 'page-top';
 }
-if (get_config('theme_essential', 'haveheaderblock') > 0) {
+if (get_config('theme_essential_uv', 'haveheaderblock') > 0) {
     $baseregions[] = 'header';
     $fpaddregions[] = 'header';
 }
 $onecolumnregions = array_merge($baseregions);
 $standardregions = array_merge(array('side-pre'), $baseregions);
-if (get_config('theme_essential', 'pagetopblocks')) {
+if (get_config('theme_essential_uv', 'pagetopblocks')) {
     $onecolumnregions[] = 'page-top';
     $standardregions[] = 'page-top';
 }
@@ -196,6 +196,6 @@ $THEME->layouts = array(
 );
 
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
-$THEME->csspostprocess = 'theme_essential_process_css';
+$THEME->csspostprocess = 'theme_essential_uv_process_css';
 
-$THEME->iconsystem = '\\theme_essential\\output\\icon_system_fontawesome';
+$THEME->iconsystem = '\\theme_essential_uv\\output\\icon_system_fontawesome';
