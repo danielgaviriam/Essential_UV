@@ -41,6 +41,7 @@ $THEME->sheets[] = 'bootstrap-pix';
 $THEME->sheets[] = 'essential_uv-settings';
 
 if ((get_config('theme_essential_uv', 'enablealternativethemecolors1')) ||
+
         (get_config('theme_essential_uv', 'enablealternativethemecolors2')) ||
         (get_config('theme_essential_uv', 'enablealternativethemecolors3')) ||
         (get_config('theme_essential_uv', 'enablealternativethemecolors4'))
@@ -49,6 +50,7 @@ if ((get_config('theme_essential_uv', 'enablealternativethemecolors1')) ||
 }
 
 if (get_config('theme_essential_uv', 'customscrollbars')) {
+
     $THEME->sheets[] = 'essential_uv-scrollbars';
 }
 
