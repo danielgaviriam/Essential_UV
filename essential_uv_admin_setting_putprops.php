@@ -18,7 +18,7 @@
  * Put properties with validation setting.
  *
  * @package    theme
- * @subpackage essential
+ * @subpackage essential_uv
  * @copyright  &copy; 2017-onwards G J Barnard.
  * @author     G J Barnard - {@link http://moodle.org/user/profile.php?id=442195}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-class essential_admin_setting_putprops extends admin_setting_configtextarea {
+class essential_uv_admin_setting_putprops extends admin_setting_configtextarea {
 
     /** @var string Name of the theme. */
     private $themename;
