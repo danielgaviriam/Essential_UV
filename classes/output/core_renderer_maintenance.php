@@ -45,7 +45,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_essential_uv_uv\output;
+namespace theme_essential_uv\output;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -61,7 +61,7 @@ class core_renderer_maintenance extends \core_renderer_maintenance {
      */
     public function __construct(\moodle_page $page, $target) {
         parent::__construct($page, $target);
-        $this->themeconfig = array(\theme_config::load('essential_uv_uv'));
+        $this->themeconfig = array(\theme_config::load('essential_uv'));
     }
 
     /**
