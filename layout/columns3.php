@@ -17,7 +17,7 @@
 /**
  * Essential is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2014 Gareth J Barnard, David Bezemer
  * @copyright   2013 Julian Ridden
@@ -26,16 +26,16 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once(\theme_essential\toolbox::get_tile_file('additionaljs'));
-require_once(\theme_essential\toolbox::get_tile_file('header'));
-$coursetitleposition = \theme_essential\toolbox::get_setting('coursetitleposition');
+require_once(\theme_essential_uv\toolbox::get_tile_file('additionaljs'));
+require_once(\theme_essential_uv\toolbox::get_tile_file('header'));
+$coursetitleposition = \theme_essential_uv\toolbox::get_setting('coursetitleposition');
 if (empty($coursetitleposition)) {
     $coursetitleposition = 'within';
 }
 ?>
 
 <div id="page" class="container-fluid">
-    <?php require_once(\theme_essential\toolbox::get_tile_file('pagetopheader')); ?>
+    <?php require_once(\theme_essential_uv\toolbox::get_tile_file('pagetopheader')); ?>
     <!-- Start Main Regions -->
     <div id="page-content" class="row-fluid">
         <div id="<?php echo $regionbsid ?>" class="span9<?php echo (!$left) ? ' pull-right' : ''; ?>">
@@ -53,8 +53,8 @@ if ($tablet) {
 } else {
     echo '<div id="content" class="span8 desktop-first-column">';
 }
-if (\theme_essential\toolbox::get_setting('pagetopblocks')) {
-    echo $OUTPUT->essential_blocks('page-top', 'row-fluid', 'aside', 'pagetopblocksperrow');
+if (\theme_essential_uv\toolbox::get_setting('pagetopblocks')) {
+    echo $OUTPUT->essential_uv_blocks('page-top', 'row-fluid', 'aside', 'pagetopblocksperrow');
 }
 echo '<section id="region-main">';
 if ($coursetitleposition == 'within') {
@@ -69,9 +69,9 @@ echo '</section>';
 echo '</div>';
 if (!$tablet) {
     if ((($hasboringlayout) && ($left)) || ((!$hasboringlayout) && (!$left))) {
-        echo $OUTPUT->essential_blocks('side-pre', 'span4 desktop-first-column');
+        echo $OUTPUT->essential_uv_blocks('side-pre', 'span4 desktop-first-column');
     } else {
-        echo $OUTPUT->essential_blocks('side-pre', 'span4 pull-right');
+        echo $OUTPUT->essential_uv_blocks('side-pre', 'span4 pull-right');
     }
 }
 ?>
@@ -80,21 +80,21 @@ if (!$tablet) {
         <?php
         if ($tablet) {
             ?> <div class="span3<?php echo (!$left) ? ' desktop-first-column' : ''; ?>"><div class="row-fluid"> <?php
-    echo $OUTPUT->essential_blocks('side-pre', '');
-    echo $OUTPUT->essential_blocks('side-post', '');
+    echo $OUTPUT->essential_uv_blocks('side-pre', '');
+    echo $OUTPUT->essential_uv_blocks('side-post', '');
 ?> </div></div> <?php
         } else {
             $postclass = 'span3';
             if (!$left) {
                 $postclass .= ' desktop-first-column';
             }
-            echo $OUTPUT->essential_blocks('side-post', $postclass);
+            echo $OUTPUT->essential_uv_blocks('side-post', $postclass);
         }
 ?>
     </div>
     <!-- End Main Regions -->
 </div>
 
-<?php require_once(\theme_essential\toolbox::get_tile_file('footer')); ?>
+<?php require_once(\theme_essential_uv\toolbox::get_tile_file('footer')); ?>
 </body>
 </html>

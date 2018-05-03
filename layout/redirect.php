@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2013 Julian Ridden
  * @copyright   2014 Gareth J Barnard, David Bezemer
@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once(\theme_essential\toolbox::get_tile_file('additionaljs'));
+require_once(\theme_essential_uv\toolbox::get_tile_file('additionaljs'));
 echo $OUTPUT->doctype();
 ?>
 <html <?php echo $OUTPUT->htmlattributes(); ?>>
