@@ -23,7 +23,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_essential;
+namespace theme_essential_uv;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -62,33 +62,33 @@ class toolbox {
 
         if (!self::lte_ie9()) {
             if (\right_to_left()) {
-                $moodlecss = 'essential-rtl.css';
+                $moodlecss = 'essential_uv-rtl.css';
             } else {
-                $moodlecss = 'essential.css';
+                $moodlecss = 'essential_uv.css';
             }
 
             $syscontext = \context_system::instance();
             $itemid = \theme_get_revision();
             $url = \moodle_url::make_file_url("$CFG->wwwroot/pluginfile.php",
-                            "/$syscontext->id/theme_essential/style/$itemid/$moodlecss");
+                            "/$syscontext->id/theme_essential_uv/style/$itemid/$moodlecss");
             $url = preg_replace('|^https?://|i', '//', $url->out(false));
             return '<link rel="stylesheet" href="' . $url . '">';
         } else {
             if (\right_to_left()) {
-                $moodlecssone = 'essential-rtl_ie9-blessed1.css';
-                $moodlecsstwo = 'essential-rtl_ie9.css';
+                $moodlecssone = 'essential_uv-rtl_ie9-blessed1.css';
+                $moodlecsstwo = 'essential_uv-rtl_ie9.css';
             } else {
-                $moodlecssone = 'essential_ie9-blessed1.css';
-                $moodlecsstwo = 'essential_ie9.css';
+                $moodlecssone = 'essential_uv_ie9-blessed1.css';
+                $moodlecsstwo = 'essential_uv_ie9.css';
             }
 
             $syscontext = \context_system::instance();
             $itemid = \theme_get_revision();
             $urlone = \moodle_url::make_file_url("$CFG->wwwroot/pluginfile.php",
-                            "/$syscontext->id/theme_essential/style/$itemid/$moodlecssone");
+                            "/$syscontext->id/theme_essential_uv/style/$itemid/$moodlecssone");
             $urlone = preg_replace('|^https?://|i', '//', $urlone->out(false));
             $urltwo = \moodle_url::make_file_url("$CFG->wwwroot/pluginfile.php",
-                            "/$syscontext->id/theme_essential/style/$itemid/$moodlecsstwo");
+                            "/$syscontext->id/theme_essential_uv/style/$itemid/$moodlecsstwo");
             $urltwo = preg_replace('|^https?://|i', '//', $urltwo->out(false));
             return '<link rel="stylesheet" href="'.$urlone . '"><link rel="stylesheet" href="'.$urltwo.'">';
         }
@@ -140,7 +140,7 @@ class toolbox {
     static public function course_content_search() {
         $canwe = false;
         global $CFG;
-        if ((self::get_setting('coursecontentsearch')) && (file_exists("$CFG->dirroot/theme/essential/"))) {
+        if ((self::get_setting('coursecontentsearch')) && (file_exists("$CFG->dirroot/theme/essential_uv/"))) {
             $canwe = true;
         }
         return $canwe;
@@ -151,7 +151,7 @@ class toolbox {
         if (empty($us->corerenderer)) {
             // Use $OUTPUT unless is not a Essential or child core_renderer which can happen on theme switch.
             global $OUTPUT;
-            if (property_exists($OUTPUT, 'essential')) {
+            if (property_exists($OUTPUT, 'essential_uv')) {
                 $us->corerenderer = $OUTPUT;
             } else {
                 // Use $PAGE->theme->name as will be accurate than $CFG->theme when using URL theme changes.
@@ -165,7 +165,7 @@ class toolbox {
                     $corerenderer = null;
                 }
                 // Fallback check.
-                if (($corerenderer != null) && (property_exists($corerenderer, 'essential'))) {
+                if (($corerenderer != null) && (property_exists($corerenderer, 'essential_uv'))) {
                     $us->corerenderer = $corerenderer;
                 } else {
                     // Probably during theme switch, '$CFG->theme' will be accurrate.
@@ -176,12 +176,12 @@ class toolbox {
                         // Specialised renderer may not exist in theme.  This is not a coding fault.  We just need to cope.
                         $corerenderer = null;
                     }
-                    if (($corerenderer != null) && (property_exists($corerenderer, 'essential'))) {
+                    if (($corerenderer != null) && (property_exists($corerenderer, 'essential_uv'))) {
                         $us->corerenderer = $corerenderer;
                     } else {
                         // Last resort.  Hopefully will be fine on next page load for Child themes.
                         // However '***_process_css' in lib.php will be fine as it sets the correct renderer.
-                        $us->corerenderer = $PAGE->get_renderer('theme_essential', 'core');
+                        $us->corerenderer = $PAGE->get_renderer('theme_essential_uv', 'core');
                     }
                 }
             }
@@ -404,8 +404,8 @@ class toolbox {
      */
     static public function initialise_colourswitcher(\moodle_page $page) {
         self::check_colours_switch();
-        \user_preference_allow_ajax_update('theme_essential_colours', PARAM_ALPHANUM);
-        $page->requires->js_call_amd('theme_essential/coloursswitcher', 'init',
+        \user_preference_allow_ajax_update('theme_essential_uv_colours', PARAM_ALPHANUM);
+        $page->requires->js_call_amd('theme_essential_uv/coloursswitcher', 'init',
             array(array('div' => '#custom_menu_themecolours .dropdown-menu')));
     }
 
@@ -855,18 +855,18 @@ class toolbox {
         $currentprops = self::compile_properties($themename, false);
 
         // Build the report.
-        $report = get_string('putpropertyreport', 'theme_essential').PHP_EOL;
-        $report .= get_string('putpropertyproperties', 'theme_essential').' \'Moodle\' '.
-            get_string('putpropertyversion', 'theme_essential').' '.$props['moodle_version'].'.'.PHP_EOL;
+        $report = get_string('putpropertyreport', 'theme_essential_uv').PHP_EOL;
+        $report .= get_string('putpropertyproperties', 'theme_essential_uv').' \'Moodle\' '.
+            get_string('putpropertyversion', 'theme_essential_uv').' '.$props['moodle_version'].'.'.PHP_EOL;
         unset($props['moodle_version']);
-        $report .= get_string('putpropertyour', 'theme_essential').' \'Moodle\' '.
-            get_string('putpropertyversion', 'theme_essential').' '.$currentprops['moodle_version']->value.'.'.PHP_EOL;
+        $report .= get_string('putpropertyour', 'theme_essential_uv').' \'Moodle\' '.
+            get_string('putpropertyversion', 'theme_essential_uv').' '.$currentprops['moodle_version']->value.'.'.PHP_EOL;
         unset($currentprops['moodle_version']);
-        $report .= get_string('putpropertyproperties', 'theme_essential').' \''.ucfirst($themename).'\' '.
-            get_string('putpropertyversion', 'theme_essential').' '.$props['theme_version'].'.'.PHP_EOL;
+        $report .= get_string('putpropertyproperties', 'theme_essential_uv').' \''.ucfirst($themename).'\' '.
+            get_string('putpropertyversion', 'theme_essential_uv').' '.$props['theme_version'].'.'.PHP_EOL;
         unset($props['theme_version']);
-        $report .= get_string('putpropertyour', 'theme_essential').' \''.ucfirst($themename).'\' '.
-            get_string('putpropertyversion', 'theme_essential').' '.$currentprops['theme_version']->value.'.'.PHP_EOL.PHP_EOL;
+        $report .= get_string('putpropertyour', 'theme_essential_uv').' \''.ucfirst($themename).'\' '.
+            get_string('putpropertyversion', 'theme_essential_uv').' '.$currentprops['theme_version']->value.'.'.PHP_EOL.PHP_EOL;
         unset($currentprops['theme_version']);
 
         // Pre-process files - using 'theme_essential_pluginfile' in lib.php as a reference.
@@ -895,7 +895,7 @@ class toolbox {
 
         // Course title images are complex and related to the category id of the installation, so ignore!
         if ((!empty($props['enablecategorycti'])) || (!empty($props['enablecategoryctics']))) {
-            $report .= get_string('putpropertiesignorecti', 'theme_essential').PHP_EOL.PHP_EOL;
+            $report .= get_string('putpropertiesignorecti', 'theme_essential_uv').PHP_EOL.PHP_EOL;
         }
         $ctikeys = array(
             'enablecategorycti',
@@ -922,21 +922,21 @@ class toolbox {
         }
 
         if ($filestoreport) {
-            $report .= get_string('putpropertiesreportfiles', 'theme_essential').PHP_EOL.$filestoreport.PHP_EOL;
+            $report .= get_string('putpropertiesreportfiles', 'theme_essential_uv').PHP_EOL.$filestoreport.PHP_EOL;
         }
 
         // Need to ignore and report on any unknown settings.
-        $report .= get_string('putpropertiessettingsreport', 'theme_essential').PHP_EOL;
+        $report .= get_string('putpropertiessettingsreport', 'theme_essential_uv').PHP_EOL;
         $changed = '';
         $unchanged = '';
         $added = '';
         $ignored = '';
         $settinglog = '';
         foreach ($props as $propkey => $propvalue) {
-            $settinglog = '\''.$propkey.'\' '.get_string('putpropertiesvalue', 'theme_essential').' \''.$propvalue.'\'';
+            $settinglog = '\''.$propkey.'\' '.get_string('putpropertiesvalue', 'theme_essential_uv').' \''.$propvalue.'\'';
             if (array_key_exists($propkey, $currentprops)) {
                 if ($propvalue != $currentprops[$propkey]->value) {
-                    $settinglog .= ' '.get_string('putpropertiesfrom', 'theme_essential').' \''.$currentprops[$propkey]->value.'\'';
+                    $settinglog .= ' '.get_string('putpropertiesfrom', 'theme_essential_uv').' \''.$currentprops[$propkey]->value.'\'';
                     $changed .= $settinglog.'.'.PHP_EOL;
                     $DB->update_record('config_plugins', array('id' => $currentprops[$propkey]->id, 'value' => $propvalue), true);
                 } else {
@@ -952,16 +952,16 @@ class toolbox {
         }
 
         if (!empty($changed)) {
-            $report .= get_string('putpropertieschanged', 'theme_essential').PHP_EOL.$changed.PHP_EOL;
+            $report .= get_string('putpropertieschanged', 'theme_essential_uv').PHP_EOL.$changed.PHP_EOL;
         }
         if (!empty($added)) {
-            $report .= get_string('putpropertiesadded', 'theme_essential').PHP_EOL.$added.PHP_EOL;
+            $report .= get_string('putpropertiesadded', 'theme_essential_uv').PHP_EOL.$added.PHP_EOL;
         }
         if (!empty($unchanged)) {
-            $report .= get_string('putpropertiesunchanged', 'theme_essential').PHP_EOL.$unchanged.PHP_EOL;
+            $report .= get_string('putpropertiesunchanged', 'theme_essential_uv').PHP_EOL.$unchanged.PHP_EOL;
         }
         if (!empty($ignored)) {
-            $report .= get_string('putpropertiesignored', 'theme_essential').PHP_EOL.$ignored.PHP_EOL;
+            $report .= get_string('putpropertiesignored', 'theme_essential_uv').PHP_EOL.$ignored.PHP_EOL;
         }
 
         return $report;
@@ -969,7 +969,7 @@ class toolbox {
 
     static private function put_prop_file_preprocess($key, &$props, &$filestoreport) {
         if (!empty($props[$key])) {
-            $filestoreport .= '\''.$key.'\' '.get_string('putpropertiesvalue', 'theme_essential').' \''.
+            $filestoreport .= '\''.$key.'\' '.get_string('putpropertiesvalue', 'theme_essential_uv').' \''.
                 \core_text::substr($props[$key], 1).'\'.'.PHP_EOL;
         }
         unset($props[$key]);

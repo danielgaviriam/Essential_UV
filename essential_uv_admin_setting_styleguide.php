@@ -45,7 +45,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-class essential_admin_setting_styleguide extends admin_setting {
+class essential_uv_admin_setting_styleguide extends admin_setting {
 
     /**
      * Constructor
@@ -62,7 +62,7 @@ class essential_admin_setting_styleguide extends admin_setting {
         if (($PAGE->bodyid == 'page-admin-setting-' . $name) ||
             ($PAGE->bodyid == 'page-theme-'.$PAGE->theme->name.'-pages-styleguide')) {
             $bc = new block_contents();
-            $bc->title = get_string('styleguide', 'theme_essential');
+            $bc->title = get_string('styleguide', 'theme_essential_uv');
             $bc->attributes['class'] = 'block block_style_guide';
             $bc->attributes['data-block'] = 'style_guide';
             $bc->content = '<ul class="nav nav-list">';
@@ -146,7 +146,7 @@ class essential_admin_setting_styleguide extends admin_setting {
             $defaultregion = $PAGE->blocks->get_default_region();
             $PAGE->blocks->add_fake_block($bc, $defaultregion);
 
-            $PAGE->requires->js_call_amd('theme_essential/styleguide', 'init');
+            $PAGE->requires->js_call_amd('theme_essential_uv/styleguide', 'init');
         }
 
         parent::__construct($name, $visiblename, $description, '');
