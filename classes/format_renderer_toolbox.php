@@ -15,15 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2015 Gareth J Barnard
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_essential;
+namespace theme_essential_uv;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -61,7 +61,7 @@ trait format_renderer_toolbox {
                 $previouslink .= \html_writer::end_tag('div');
                 $previouslink .= \html_writer::start_tag('span', array('class' => 'text'));
                 $previouslink .= \html_writer::start_tag('span', array('class' => 'nav_guide'));
-                $previouslink .= \get_string('previoussection', 'theme_essential');
+                $previouslink .= \get_string('previoussection', 'theme_essential_uv');
                 $previouslink .= \html_writer::end_tag('span');
                 $previouslink .= \html_writer::empty_tag('br');
                 $previouslink .= \get_section_name($course, $sections[$back]);
@@ -84,7 +84,7 @@ trait format_renderer_toolbox {
                 $nextlink .= \html_writer::end_tag('div');
                 $nextlink .= \html_writer::start_tag('span', array('class' => 'text'));
                 $nextlink .= \html_writer::start_tag('span', array('class' => 'nav_guide'));
-                $nextlink .= \get_string('nextsection', 'theme_essential');
+                $nextlink .= \get_string('nextsection', 'theme_essential_uv');
                 $nextlink .= \html_writer::end_tag('span');
                 $nextlink .= \html_writer::empty_tag('br');
                 $nextlink .= \get_section_name($course, $sections[$forward]);

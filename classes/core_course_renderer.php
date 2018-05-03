@@ -27,16 +27,16 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-class theme_essential_core_course_renderer extends core_course_renderer {
+class theme_essential_uv_core_course_renderer extends core_course_renderer {
     protected $enablecategoryicon;
 
     public function __construct(moodle_page $page, $target) {
         parent::__construct($page, $target);
         static $theme;
         if (empty($theme)) {
-            $theme = theme_config::load('essential');
+            $theme = theme_config::load('essential_uv');
         }
-        $this->enablecategoryicon = \theme_essential\toolbox::get_setting('enablecategoryicon');
+        $this->enablecategoryicon = \theme_essential_uv\toolbox::get_setting('enablecategoryicon');
     }
 
     /**
@@ -97,7 +97,7 @@ class theme_essential_core_course_renderer extends core_course_renderer {
         if ($coursecat->get_children_count()) {
             $childcoursescount = $this->get_children_courses_count($coursecat);
             $coursescount = $coursescount.' - '.$childcoursescount;
-            $coursecounttitle = get_string('numberofcoursesandsubcatcourses', 'theme_essential');
+            $coursecounttitle = get_string('numberofcoursesandsubcatcourses', 'theme_essential_uv');
         } else {
             $coursecounttitle = get_string('numberofcourses');
         }
@@ -108,18 +108,18 @@ class theme_essential_core_course_renderer extends core_course_renderer {
         $categoryname = html_writer::tag('span', $coursecat->get_formatted_name());
 
         // Do a settings check to output our icon / image for the category.
-        if (\theme_essential\toolbox::get_setting('enablecustomcategoryicon')) {
+        if (\theme_essential_uv\toolbox::get_setting('enablecustomcategoryicon')) {
             // User may have set a value for the category.
-            $image = \theme_essential\toolbox::get_setting('categoryimage'.$coursecat->id, 'format_file_url');
+            $image = \theme_essential_uv\toolbox::get_setting('categoryimage'.$coursecat->id, 'format_file_url');
             if (empty($image)) {
-                $icon = \theme_essential\toolbox::get_setting('categoryicon'.$coursecat->id);;
+                $icon = \theme_essential_uv\toolbox::get_setting('categoryicon'.$coursecat->id);;
             }
         }
         if ((empty($icon)) && (empty($image))) {
             // User hasn't set a value for the category, get the default.
-            $image = \theme_essential\toolbox::get_setting('defaultcategoryimage', 'format_file_url');
+            $image = \theme_essential_uv\toolbox::get_setting('defaultcategoryimage', 'format_file_url');
             if (empty($image)) {
-                $icon = \theme_essential\toolbox::get_setting('defaultcategoryicon');
+                $icon = \theme_essential_uv\toolbox::get_setting('defaultcategoryicon');
             }
         }
         if (!empty($image)) {
@@ -247,7 +247,7 @@ class theme_essential_core_course_renderer extends core_course_renderer {
                 $teacherlinkattributes['class'] = 'dimmed';
             }
             foreach ($course->get_course_contacts() as $userid => $coursecontact) {
-                $faiconsetting = \theme_essential\toolbox::get_setting('courselistteachericon');
+                $faiconsetting = \theme_essential_uv\toolbox::get_setting('courselistteachericon');
                 $faiconsettinghtml = (empty($faiconsetting)) ? '' : '<span aria-hidden="true" class="fa fa-'.
                     $faiconsetting.'"></span> ';
                 $name = $faiconsettinghtml.$coursecontact['rolename'].': '.
@@ -275,7 +275,7 @@ class theme_essential_core_course_renderer extends core_course_renderer {
     }
 
     /**
-     * Serves requests to /theme/essential/inspector.ajax.php
+     * Serves requests to /theme/essential_uv/inspector.ajax.php
      *
      * @param string $term search term.
      * @return array of results.

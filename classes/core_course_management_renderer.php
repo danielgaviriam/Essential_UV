@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2014 Gareth J Barnard
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die;
 
 require_once($CFG->dirroot . "/course/classes/management_renderer.php");
 
-class theme_essential_core_course_management_renderer extends core_course_management_renderer {
+class theme_essential_uv_core_course_management_renderer extends core_course_management_renderer {
 
     /**
      * Renderers a key value pair of information for display.

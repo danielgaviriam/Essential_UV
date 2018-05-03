@@ -15,17 +15,17 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
  * Common methods for the core and core maintenance renderers.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2015 Gareth J Barnard
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_essential\output;
+namespace theme_essential_uv\output;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -68,10 +68,10 @@ trait core_renderer_toolbox {
         global $CFG;
         $filename .= '.php';
 
-        if (file_exists("$CFG->dirroot/theme/essential/layout/tiles/$filename")) {
-            return "$CFG->dirroot/theme/essential/layout/tiles/$filename";
-        } else if (!empty($CFG->themedir) and file_exists("$CFG->themedir/essential/layout/tiles/$filename")) {
-            return "$CFG->themedir/essential/layout/tiles/$filename";
+        if (file_exists("$CFG->dirroot/theme/essential_uv/layout/tiles/$filename")) {
+            return "$CFG->dirroot/theme/essential_uv/layout/tiles/$filename";
+        } else if (!empty($CFG->themedir) and file_exists("$CFG->themedir/essential_uv/layout/tiles/$filename")) {
+            return "$CFG->themedir/essential_uv/layout/tiles/$filename";
         } else {
             return dirname(__FILE__) . "/$filename";
         }

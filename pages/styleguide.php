@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential theme.
+ * essential_uv theme.
  *
  * @package    theme
- * @subpackage essential
+ * @subpackage essential_uv
  * @copyright  &copy; 2016-onwards G J Barnard in respect to modifications of the Bootstrap theme.
  * @author     G J Barnard - {@link http://moodle.org/user/profile.php?id=442195}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -31,17 +31,17 @@ require_once('../lib.php');
 require_login();
 
 $PAGE->set_context(context_system::instance());
-$thispageurl = new moodle_url('/theme/essential/pages/styleguide.php');
+$thispageurl = new moodle_url('/theme/essential_uv/pages/styleguide.php');
 $PAGE->set_url($thispageurl, $thispageurl->params());
 $PAGE->set_docs_path('');
 $PAGE->set_pagelayout('standard');
 
 require_once($CFG->dirroot . '/lib/adminlib.php');
-require_once($CFG->dirroot . '/theme/essential/essential_admin_setting_styleguide.php');
-$title = get_string('styleguide', 'theme_essential');
-$setting = new essential_admin_setting_styleguide('theme_essential_styleguide',
-    get_string('styleguidesub', 'theme_essential'),
-    get_string('styleguidedesc', 'theme_essential',
+require_once($CFG->dirroot . '/theme/essential_uv/essential_uv_admin_setting_styleguide.php');
+$title = get_string('styleguide', 'theme_essential_uv');
+$setting = new essential_uv_admin_setting_styleguide('theme_essential_uv_styleguide',
+    get_string('styleguidesub', 'theme_essential_uv'),
+    get_string('styleguidedesc', 'theme_essential_uv',
         array(
             'origcodelicenseurl' => html_writer::link('https://github.com/twbs/bootstrap/blob/master/LICENSE', 'MIT',
                 array('target' => '_blank')),

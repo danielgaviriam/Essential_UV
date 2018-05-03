@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2015 Gareth J Barnard
  * @copyright   2014 Gareth J Barnard, David Bezemer
@@ -31,8 +31,8 @@ defined('MOODLE_INTERNAL') || die;
 if (file_exists("$CFG->dirroot/course/format/grid/renderer.php")) {
     include_once($CFG->dirroot . "/course/format/grid/renderer.php");
 
-    class theme_essential_format_grid_renderer extends format_grid_renderer {
-        use \theme_essential\format_renderer_toolbox;
+    class theme_essential_uv_format_grid_renderer extends format_grid_renderer {
+        use \theme_essential_uv\format_renderer_toolbox;
 
         /**
          * Backwards compatibility method to get 'topic0attop' attribute value.

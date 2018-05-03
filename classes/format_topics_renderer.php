@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2015 Gareth J Barnard
  * @copyright   2014 Gareth J Barnard, David Bezemer
@@ -29,6 +29,6 @@ defined('MOODLE_INTERNAL') || die;
 
 require_once($CFG->dirroot . "/course/format/topics/renderer.php");
 
-class theme_essential_format_topics_renderer extends format_topics_renderer {
-    use \theme_essential\format_renderer_toolbox;
+class theme_essential_uv_format_topics_renderer extends format_topics_renderer {
+    use \theme_essential_uv\format_renderer_toolbox;
 }

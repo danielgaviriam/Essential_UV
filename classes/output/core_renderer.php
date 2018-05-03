@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2015 Gareth J Barnard
  * @copyright   2014 Gareth J Barnard, David Bezemer
@@ -25,7 +25,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_essential\output;
+namespace theme_essential_uv\output;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -52,7 +52,7 @@ class core_renderer extends \core_renderer {
     protected $themeconfig;
     protected $left;
 
-    protected $essential = null; // Used for determining if this is a Essential or child of renderer.
+    protected $essential_uv = null; // Used for determining if this is a essential_uv or child of renderer.
 
     /**
      * Constructor
@@ -62,7 +62,7 @@ class core_renderer extends \core_renderer {
      */
     public function __construct(moodle_page $page, $target) {
         parent::__construct($page, $target);
-        $this->themeconfig = array(\theme_config::load('essential'));
+        $this->themeconfig = array(\theme_config::load('essential_uv'));
         $this->left = !\right_to_left();
     }
 
@@ -98,7 +98,7 @@ class core_renderer extends \core_renderer {
      * @return string $breadcrumbs
      */
     public function navbar() {
-        $breadcrumbstyle = \theme_essential\toolbox::get_setting('breadcrumbstyle');
+        $breadcrumbstyle = \theme_essential_uv\toolbox::get_setting('breadcrumbstyle');
         if ($breadcrumbstyle) {
             if ($breadcrumbstyle == '4') {
                 $breadcrumbstyle = '1'; // Fancy style with no collapse.
@@ -106,7 +106,7 @@ class core_renderer extends \core_renderer {
 
             $showcategories = true;
             if (($this->page->pagelayout == 'course') || ($this->page->pagelayout == 'incourse')) {
-                $showcategories = \theme_essential\toolbox::get_setting('categoryincoursebreadcrumbfeature');
+                $showcategories = \theme_essential_uv\toolbox::get_setting('categoryincoursebreadcrumbfeature');
             }
 
             $breadcrumbs = html_writer::tag('span', get_string('pagepath'), array('class' => 'accesshide', 'id' => 'navbar-label'));
@@ -215,14 +215,14 @@ class core_renderer extends \core_renderer {
                 // @codingStandardsIgnoreEnd
             }
             if (defined('MDL_PERFTOFOOT') || debugging() || $CFG->perfdebug > 7) {
-                $performanceinfo = $this->performance_output($perf, \theme_essential\toolbox::get_setting('perfinfo'));
+                $performanceinfo = $this->performance_output($perf, \theme_essential_uv\toolbox::get_setting('perfinfo'));
             }
         }
 
         $footer = str_replace($this->unique_performance_info_token, $performanceinfo, $footer);
         $footer = str_replace($this->unique_end_html_token, $this->page->requires->get_end_code(), $footer);
         $this->page->set_state(moodle_page::STATE_DONE);
-        $info = '<!-- Essential theme version: '.$this->page->theme->settings->version.
+        $info = '<!-- essential_uv theme version: '.$this->page->theme->settings->version.
             ' is developed by Gareth J Barnard: about.me/gjbarnard -->';
 
         return $output . $footer . $info;
@@ -241,7 +241,7 @@ class core_renderer extends \core_renderer {
         $heading = parent::heading($text, $level, $classes, $id);
 
         if (($level == 2) && ($this->page->pagelayout == 'incourse') && (is_object($this->page->cm)) &&
-            (\theme_essential\toolbox::get_setting('returntosectionfeature'))) {
+            (\theme_essential_uv\toolbox::get_setting('returntosectionfeature'))) {
             static $called = false;
             if (!$called) {
                 $markup = html_writer::start_tag('div', array('class' => 'row-fluid'));
@@ -377,9 +377,9 @@ class core_renderer extends \core_renderer {
         $content = parent::course_content_header($onlyifnotcalledbefore);
 
         if ($this->page->pagelayout == 'mydashboard') {
-            if (\theme_essential\toolbox::course_content_search()) {
+            if (\theme_essential_uv\toolbox::course_content_search()) {
                 $content .= '<div class="courseitemsearch">';
-                $content .= '<div><p>'.get_string('findcoursecontent', 'theme_essential').'</p></div>';
+                $content .= '<div><p>'.get_string('findcoursecontent', 'theme_essential_uv').'</p></div>';
                 $content .= '<div id="courseitemsearchresults">';
                 $content .= '<input type="text" name="courseitemsearch" id="courseitemsearch" disabled="disabled">';
                 $content .= '</div></div>';
@@ -449,7 +449,7 @@ class core_renderer extends \core_renderer {
 
         if ($showfrontpagemenu) {
             $settingsnode = $this->page->settingsnav->find('frontpage', navigation_node::TYPE_SETTING);
-            $title = get_string('frontpagesettingstitle', 'theme_essential');
+            $title = get_string('frontpagesettingstitle', 'theme_essential_uv');
             if ($settingsnode) {
                 // Build an action menu based on the visible nodes from this navigation tree.
                 $skipped = $this->build_action_menu_from_navigation($menu, $settingsnode, false, true);
@@ -464,7 +464,7 @@ class core_renderer extends \core_renderer {
             }
         } else if ($showcoursemenu) {
             $settingsnode = $this->page->settingsnav->find('courseadmin', navigation_node::TYPE_COURSE);
-            $title = get_string('coursesettingstitle', 'theme_essential');
+            $title = get_string('coursesettingstitle', 'theme_essential_uv');
             if ($settingsnode) {
                 // Build an action menu based on the visible nodes from this navigation tree.
                 $skipped = $this->build_action_menu_from_navigation($menu, $settingsnode, false, true);
@@ -480,7 +480,7 @@ class core_renderer extends \core_renderer {
         } else if ($showusermenu) {
             // Get the course admin node from the settings navigation.
             $settingsnode = $this->page->settingsnav->find('useraccount', navigation_node::TYPE_CONTAINER);
-            $title = get_string('usersettingstitle', 'theme_essential');
+            $title = get_string('usersettingstitle', 'theme_essential_uv');
             if ($settingsnode) {
                 // Build an action menu based on the visible nodes from this navigation tree.
                 $this->build_action_menu_from_navigation($menu, $settingsnode);
@@ -529,7 +529,7 @@ class core_renderer extends \core_renderer {
                 if ($node) {
                     // Build an action menu based on the visible nodes from this navigation tree.
                     $menu = new action_menu();
-                    $title = get_string('modulesettingstitle', 'theme_essential');
+                    $title = get_string('modulesettingstitle', 'theme_essential_uv');
                     $this->build_action_menu_from_navigation($menu, $node);
                 }
             }
@@ -541,7 +541,7 @@ class core_renderer extends \core_renderer {
                 if ($node) {
                     // Build an action menu based on the visible nodes from this navigation tree.
                     $menu = new action_menu();
-                    $title = get_string('coursecategorysettingstitle', 'theme_essential');
+                    $title = get_string('coursecategorysettingstitle', 'theme_essential_uv');
                     $this->build_action_menu_from_navigation($menu, $node);
                 }
             }
@@ -589,7 +589,7 @@ class core_renderer extends \core_renderer {
         $context->primary->icon['title'] = $context->primary->title;
         $context->primary->icon['key'] = $iconkey;
         $context->primary->menutrigger = true;
-        return $this->render_from_template('theme_essential/navbar_action_menu', $context);
+        return $this->render_from_template('theme_essential_uv/navbar_action_menu', $context);
     }
 
     /**
@@ -680,7 +680,7 @@ class core_renderer extends \core_renderer {
                 if ($imageurl) {
                     $catid = $currentcatid;
                 } else {
-                    $parents = \theme_essential\toolbox::get_categories_list()[$currentcatid]->parents;
+                    $parents = \theme_essential_uv\toolbox::get_categories_list()[$currentcatid]->parents;
                     foreach ($parents as $parent) {
                         $image = $this->get_setting('categoryct'.$parent.'image');
                         if ($image) {
@@ -721,7 +721,7 @@ class core_renderer extends \core_renderer {
 
         $markup = parent::course_content_footer($onlyifnotcalledbefore);
         if (($this->page->pagelayout == 'incourse') && (is_object($this->page->cm)) &&
-            (\theme_essential\toolbox::get_setting('returntosectionfeature'))) {
+            (\theme_essential_uv\toolbox::get_setting('returntosectionfeature'))) {
             $markup .= html_writer::start_tag('div', array('class' => 'row-fluid'));
             $markup .= html_writer::start_tag('div', array('class' => 'span12 text-center footer-rts'));
             $markup .= $this->return_to_section();
@@ -748,7 +748,7 @@ class core_renderer extends \core_renderer {
             $sectionname = $courseformat->get_section_name($this->page->cm->sectionnum);
             $sectionnamelen = \core_text::strlen($sectionname);
             if ($sectionnamelen !== false) {
-                $sectionnamelimit = \theme_essential\toolbox::get_setting('returntosectiontextlimitfeature');
+                $sectionnamelimit = \theme_essential_uv\toolbox::get_setting('returntosectiontextlimitfeature');
                 if (($sectionnamelimit) && ($sectionnamelen > $sectionnamelimit)) {
                     $sectionname = \core_text::substr($sectionname, 0, $sectionnamelimit).'...';
                 }
@@ -761,7 +761,7 @@ class core_renderer extends \core_renderer {
             } else {
                 $href = $url->out(false).'#section-'.$this->page->cm->sectionnum;
             }
-            $title = get_string('returntosection', 'theme_essential', array('section' => $sectionname));
+            $title = get_string('returntosection', 'theme_essential_uv', array('section' => $sectionname));
 
             $markup = html_writer::tag('a', $title.$this->getfontawesomemarkup('sign-in', array('fa-fw')),
                 array('href' => $href, 'class' => 'btn btn-default', 'title' => $title));
@@ -861,7 +861,7 @@ class core_renderer extends \core_renderer {
                 $class = '';
                 if ($menunode->get_url() !== null) {
                     $url = $menunode->get_url();
-                    $class = $url->get_param('essentialcolours');
+                    $class = $url->get_param('essential_uvcolours');
                 } else {
                     $url = $this->page->url;
                 }
@@ -942,9 +942,9 @@ class core_renderer extends \core_renderer {
 
         $coursemenu = new custom_menu();
 
-        $hasdisplaymycourses = \theme_essential\toolbox::get_setting('displaymycourses');
+        $hasdisplaymycourses = \theme_essential_uv\toolbox::get_setting('displaymycourses');
         if (isloggedin() && !isguestuser() && $hasdisplaymycourses) {
-            $mycoursesorder = \theme_essential\toolbox::get_setting('mycoursesorder');
+            $mycoursesorder = \theme_essential_uv\toolbox::get_setting('mycoursesorder');
             if (!$mycoursesorder) {
                 $mycoursesorder = 1;
             }
@@ -954,15 +954,15 @@ class core_renderer extends \core_renderer {
                 $lateststring = 'latest';
             }
 
-            $mycoursetitle = \theme_essential\toolbox::get_setting('mycoursetitle');
+            $mycoursetitle = \theme_essential_uv\toolbox::get_setting('mycoursetitle');
             if ($mycoursetitle == 'module') {
-                $branchtitle = get_string('my'.$lateststring.'modules', 'theme_essential');
+                $branchtitle = get_string('my'.$lateststring.'modules', 'theme_essential_uv');
             } else if ($mycoursetitle == 'unit') {
-                $branchtitle = get_string('my'.$lateststring.'units', 'theme_essential');
+                $branchtitle = get_string('my'.$lateststring.'units', 'theme_essential_uv');
             } else if ($mycoursetitle == 'class') {
-                $branchtitle = get_string('my'.$lateststring.'classes', 'theme_essential');
+                $branchtitle = get_string('my'.$lateststring.'classes', 'theme_essential_uv');
             } else {
-                $branchtitle = get_string('my'.$lateststring.'courses', 'theme_essential');
+                $branchtitle = get_string('my'.$lateststring.'courses', 'theme_essential_uv');
             }
             $branchlabel = $this->getfontawesomemarkup('briefcase').$branchtitle;
             $branchurl = $this->page->url;
@@ -976,7 +976,7 @@ class core_renderer extends \core_renderer {
 
             // Retrieve courses and add them to the menu when they are visible.
             $numcourses = 0;
-            $hasdisplayhiddenmycourses = \theme_essential\toolbox::get_setting('displayhiddenmycourses');
+            $hasdisplayhiddenmycourses = \theme_essential_uv\toolbox::get_setting('displayhiddenmycourses');
 
             $courses = array();
             if (($mycoursesorder == 1) || ($mycoursesorder == 2)) {
@@ -988,7 +988,7 @@ class core_renderer extends \core_renderer {
                     }
                 } else if ($mycoursesorder == 2) {
                     $sortorder = 'id';
-                    $mycoursesorderidorder = \theme_essential\toolbox::get_setting('mycoursesorderidorder');
+                    $mycoursesorderidorder = \theme_essential_uv\toolbox::get_setting('mycoursesorderidorder');
                     if ($mycoursesorderidorder == 2) {
                         $direction = 'DESC';
                     }
@@ -1058,24 +1058,24 @@ class core_renderer extends \core_renderer {
                 }
             }
 
-            $mycoursescatsubmenu = \theme_essential\toolbox::get_setting('mycoursescatsubmenu');
+            $mycoursescatsubmenu = \theme_essential_uv\toolbox::get_setting('mycoursescatsubmenu');
             if ($courses) {
-                $mycoursesmax = \theme_essential\toolbox::get_setting('mycoursesmax');
+                $mycoursesmax = \theme_essential_uv\toolbox::get_setting('mycoursesmax');
                 if (!$mycoursesmax) {
                     $mycoursesmax = PHP_INT_MAX;
                 }
                 if ($mycoursescatsubmenu) {
-                    $enablecategoryicon = \theme_essential\toolbox::get_setting('enablecategoryicon');
-                    $defaultcategoryicon = \theme_essential\toolbox::get_setting('defaultcategoryicon');
+                    $enablecategoryicon = \theme_essential_uv\toolbox::get_setting('enablecategoryicon');
+                    $defaultcategoryicon = \theme_essential_uv\toolbox::get_setting('defaultcategoryicon');
                     if (empty($defaultcategoryicon)) {
                         $defaultcategoryicon = 'folder-open';
                     }
-                    $enablecustomcategoryicon = \theme_essential\toolbox::get_setting('enablecustomcategoryicon');
+                    $enablecustomcategoryicon = \theme_essential_uv\toolbox::get_setting('enablecustomcategoryicon');
                     $mycoursescatsubmenucats = array();
                     $mycoursescatsubmenucatsnumcourses = array();
                     $categoriestoplist = false;
 
-                    $categorieslist = \theme_essential\toolbox::get_categories_list();
+                    $categorieslist = \theme_essential_uv\toolbox::get_categories_list();
                     foreach ($categorieslist as $category) {
                         if (empty($categoriestoplist[$category->id])) {
                             $categoriestoplist[$category->id] = new \stdClass;
@@ -1104,7 +1104,7 @@ class core_renderer extends \core_renderer {
                             $caticon = '';
                             if ($enablecategoryicon) {
                                 if ($enablecustomcategoryicon) {
-                                    $caticon = \theme_essential\toolbox::get_setting('categoryicon'.$categoriestoplist[$course->category]->topid);
+                                    $caticon = \theme_essential_uv\toolbox::get_setting('categoryicon'.$categoriestoplist[$course->category]->topid);
                                     if (empty($caticon)) {
                                         $caticon = $defaultcategoryicon;
                                     }
@@ -1135,7 +1135,7 @@ class core_renderer extends \core_renderer {
                 }
             }
             if ($numcourses == 0) {
-                $noenrolments = get_string('noenrolments', 'theme_essential');
+                $noenrolments = get_string('noenrolments', 'theme_essential_uv');
                 $coursemenubranch->add('<em>' . $noenrolments . '</em>', $this->page->url, $noenrolments);
             }
             return $this->render_the_custom_menu($coursemenu, 'custom_menu_courses', $mycoursescatsubmenu);
@@ -1188,30 +1188,30 @@ class core_renderer extends \core_renderer {
         if (!isguestuser()) {
             $alternativethemes = array();
             foreach (range(1, 4) as $alternativethemenumber) {
-                if (\theme_essential\toolbox::get_setting('enablealternativethemecolors' . $alternativethemenumber)) {
+                if (\theme_essential_uv\toolbox::get_setting('enablealternativethemecolors' . $alternativethemenumber)) {
                     $alternativethemes[] = $alternativethemenumber;
                 }
             }
             if (!empty($alternativethemes)) {
-                $branchtitle = get_string('themecolors', 'theme_essential');
+                $branchtitle = get_string('themecolors', 'theme_essential_uv');
                 $branchlabel = $this->getfontawesomemarkup('th-large'). $branchtitle;
                 $branchurl = $this->page->url;
                 $branchsort = 300;
                 $branch = $colourmenu->add($branchlabel, $branchurl, $branchtitle, $branchsort);
 
-                $defaultthemecolorslabel = get_string('defaultcolors', 'theme_essential');
+                $defaultthemecolorslabel = get_string('defaultcolors', 'theme_essential_uv');
                 $branch->add($this->getfontawesomemarkup('square', array('colours-default')).$defaultthemecolorslabel,
-                    new moodle_url($this->page->url, array('essentialcolours' => 'default')), $defaultthemecolorslabel);
+                    new moodle_url($this->page->url, array('essential_uvcolours' => 'default')), $defaultthemecolorslabel);
                 foreach ($alternativethemes as $alternativethemenumber) {
-                    if (\theme_essential\toolbox::get_setting('alternativethemename' . $alternativethemenumber)) {
-                        $alternativethemeslabel = \theme_essential\toolbox::get_setting(
+                    if (\theme_essential_uv\toolbox::get_setting('alternativethemename' . $alternativethemenumber)) {
+                        $alternativethemeslabel = \theme_essential_uv\toolbox::get_setting(
                             'alternativethemename'.$alternativethemenumber);
                     } else {
-                        $alternativethemeslabel = get_string('alternativecolors', 'theme_essential', $alternativethemenumber);
+                        $alternativethemeslabel = get_string('alternativecolors', 'theme_essential_uv', $alternativethemenumber);
                     }
                     $branch->add($this->getfontawesomemarkup('square', array('colours-alternative'.$alternativethemenumber)).
                         $alternativethemeslabel,
-                        new moodle_url($this->page->url, array('essentialcolours' => 'alternative' . $alternativethemenumber)),
+                        new moodle_url($this->page->url, array('essential_uvcolours' => 'alternative' . $alternativethemenumber)),
                             $alternativethemeslabel);
                 }
             }
@@ -1230,11 +1230,11 @@ class core_renderer extends \core_renderer {
                 ($this->page->pagelayout == 'standard')) &&
                 ((!empty($this->page->course->id) && $this->page->course->id > 1))) {
                 $activitystreammenu = new custom_menu();
-                $branchtitle = get_string('thiscourse', 'theme_essential');
+                $branchtitle = get_string('thiscourse', 'theme_essential_uv');
                 $branchlabel = $this->getfontawesomemarkup('book').$branchtitle;
                 $branchurl = $this->page->url;
                 $branch = $activitystreammenu->add($branchlabel, $branchurl, $branchtitle, 10002);
-                $branchtitle = get_string('people', 'theme_essential');
+                $branchtitle = get_string('people', 'theme_essential_uv');
                 $branchlabel = $this->getfontawesomemarkup('users').$branchtitle;
                 $branchurl = new moodle_url('/user/index.php', array('id' => $this->page->course->id));
                 $branch->add($branchlabel, $branchurl, $branchtitle, 100003);
@@ -1266,7 +1266,7 @@ class core_renderer extends \core_renderer {
     }
 
     protected function render_the_custom_menu(custom_menu $custommenu, $id, $usessubmenus = false, $additionalclasses = '') {
-        if (\theme_essential\toolbox::get_setting('dropdownmenuscroll')) {
+        if (\theme_essential_uv\toolbox::get_setting('dropdownmenuscroll')) {
             if ($usessubmenus) {
                 $additionalclasses .= ' dropdownsubmenuscroll';
             } else {
@@ -1325,7 +1325,7 @@ class core_renderer extends \core_renderer {
             ($this->page->pagelayout == 'admin')) { // Go to bottom.
             $menu = new custom_menu();
             $gotobottom = $this->getfontawesomemarkup('arrow-circle-o-down');
-            $menu->add($gotobottom, new moodle_url('#region-main'), get_string('gotobottom', 'theme_essential'));
+            $menu->add($gotobottom, new moodle_url('#region-main'), get_string('gotobottom', 'theme_essential_uv'));
             $html = $this->render_custom_menu($menu);
         }
         return $html;
@@ -1333,7 +1333,7 @@ class core_renderer extends \core_renderer {
 
     public function custom_menu_editing() {
         $html = '';
-        if (\theme_essential\toolbox::get_setting('displayeditingmenu')) {
+        if (\theme_essential_uv\toolbox::get_setting('displayeditingmenu')) {
             if ($this->page->user_allowed_editing()) {
                 $menu = new custom_menu();
                 $pagetype = $this->page->pagetype;
@@ -1489,7 +1489,7 @@ class core_renderer extends \core_renderer {
             $usermenu .= html_writer::tag('li', html_writer::link($branchurl, $branchlabel));
 
             // Render Help Link.
-            $usermenu .= $this->theme_essential_render_helplink();
+            $usermenu .= $this->theme_essential_uv_render_helplink();
 
             $usermenu .= html_writer::end_tag('ul');
 
@@ -1535,7 +1535,7 @@ class core_renderer extends \core_renderer {
             if (\core\session\manager::is_loggedinas()) {
                 $realuser = \core\session\manager::get_realuser();
                 $branchlabel = '<em>'.$this->getfontawesomemarkup('key').fullname($realuser, true).
-                    get_string('loggedinas', 'theme_essential').fullname($USER, true).'</em>';
+                    get_string('loggedinas', 'theme_essential_uv').fullname($USER, true).'</em>';
             } else {
                 $username = fullname($USER, true);
                 if ($rolename) {
@@ -1547,7 +1547,7 @@ class core_renderer extends \core_renderer {
             $usermenu .= html_writer::tag('li', html_writer::link($branchurl, $branchlabel));
 
             if (is_mnet_remote_user($USER) && $idprovider = $DB->get_record('mnet_host', array('id' => $USER->mnethostid))) {
-                $branchlabel = '<em>'.$this->getfontawesomemarkup('users').get_string('loggedinfrom', 'theme_essential').
+                $branchlabel = '<em>'.$this->getfontawesomemarkup('users').get_string('loggedinfrom', 'theme_essential_uv').
                     $idprovider->name.'</em>';
                 $branchurl = new moodle_url($idprovider->wwwroot);
                 $usermenu .= html_writer::tag('li', html_writer::link($branchurl, $branchlabel));
@@ -1558,7 +1558,7 @@ class core_renderer extends \core_renderer {
             }
 
             // Add preferences submenu.
-            $usermenu .= $this->theme_essential_render_preferences($context);
+            $usermenu .= $this->theme_essential_uv_render_preferences($context);
 
             $usermenu .= html_writer::empty_tag('hr', array('class' => 'sep'));
 
@@ -1599,12 +1599,12 @@ class core_renderer extends \core_renderer {
 
             // Output user grade links, course sensitive where appropriate.
             if ($course->id == SITEID) {
-                $branchlabel = '<em>'.$this->getfontawesomemarkup('list-alt').get_string('mygrades', 'theme_essential').'</em>';
+                $branchlabel = '<em>'.$this->getfontawesomemarkup('list-alt').get_string('mygrades', 'theme_essential_uv').'</em>';
                 $branchurl = new moodle_url('/grade/report/overview/index.php', array('userid' => $USER->id));
                 $usermenu .= html_writer::tag('li', html_writer::link($branchurl, $branchlabel));
             } else {
                 if (has_capability('gradereport/overview:view', $context)) {
-                    $branchlabel = '<em>'.$this->getfontawesomemarkup('list-alt').get_string('mygrades', 'theme_essential').'</em>';
+                    $branchlabel = '<em>'.$this->getfontawesomemarkup('list-alt').get_string('mygrades', 'theme_essential_uv').'</em>';
                     $params = array('userid' => $USER->id);
                     if ($course->showgrades) {
                         $params['id'] = $course->id;
@@ -1616,7 +1616,7 @@ class core_renderer extends \core_renderer {
                 if (has_capability('gradereport/user:view', $context) && $course->showgrades) {
                     // In Course also output Course grade links.
                     $branchlabel = '<em>'.$this->getfontawesomemarkup('list-alt').
-                        get_string('coursegrades', 'theme_essential').'</em>';
+                        get_string('coursegrades', 'theme_essential_uv').'</em>';
                     $branchurl = new moodle_url('/grade/report/user/index.php', array('id' => $course->id, 'userid' => $USER->id));
                     $usermenu .= html_writer::tag('li', html_writer::link($branchurl, $branchlabel));
                 }
@@ -1640,7 +1640,7 @@ class core_renderer extends \core_renderer {
             $usermenu .= html_writer::tag('li', html_writer::link($branchurl, $branchlabel));
 
             // Render Help Link.
-            $usermenu .= $this->theme_essential_render_helplink();
+            $usermenu .= $this->theme_essential_uv_render_helplink();
 
             $usermenu .= html_writer::end_tag('ul');
         }
@@ -1656,40 +1656,40 @@ class core_renderer extends \core_renderer {
      *
      * @return string
      */
-    protected function theme_essential_render_helplink() {
+    protected function theme_essential_uv_render_helplink() {
         global $USER, $CFG;
-        if (!\theme_essential\toolbox::get_setting('helplinktype')) {
+        if (!\theme_essential_uv\toolbox::get_setting('helplinktype')) {
             return false;
         }
         $branchlabel = '<em>'.$this->getfontawesomemarkup('question-circle').get_string('help').'</em>';
         $branchurl = '';
         $target = '';
 
-        if (\theme_essential\toolbox::get_setting('helplinktype') === '1') {
-            if (\theme_essential\toolbox::get_setting('helplink') &&
-                    filter_var(\theme_essential\toolbox::get_setting('helplink'), FILTER_VALIDATE_EMAIL)) {
-                $branchurl = 'mailto:' . \theme_essential\toolbox::get_setting('helplink').'?cc='.$USER->email;
+        if (\theme_essential_uv\toolbox::get_setting('helplinktype') === '1') {
+            if (\theme_essential_uv\toolbox::get_setting('helplink') &&
+                    filter_var(\theme_essential_uv\toolbox::get_setting('helplink'), FILTER_VALIDATE_EMAIL)) {
+                $branchurl = 'mailto:' . \theme_essential_uv\toolbox::get_setting('helplink').'?cc='.$USER->email;
             } else if ($CFG->supportemail && filter_var($CFG->supportemail, FILTER_VALIDATE_EMAIL)) {
                 $branchurl = 'mailto:'.$CFG->supportemail.'?cc='.$USER->email;
             } else if (is_siteadmin()) {
-                $branchurl = preg_replace("(https?:)", "", $CFG->wwwroot).'/admin/settings.php?section=theme_essential_header';
+                $branchurl = preg_replace("(https?:)", "", $CFG->wwwroot).'/admin/settings.php?section=theme_essential_uv_header';
                 $branchlabel = '<em>'.$this->getfontawesomemarkup('exclamation-triangle', array('red')).
                     get_string('invalidemail').'</em>';
             }
         }
 
-        if (\theme_essential\toolbox::get_setting('helplinktype') === '2') {
-            if (\theme_essential\toolbox::get_setting('helplink') &&
-                    filter_var(\theme_essential\toolbox::get_setting('helplink'),
+        if (\theme_essential_uv\toolbox::get_setting('helplinktype') === '2') {
+            if (\theme_essential_uv\toolbox::get_setting('helplink') &&
+                    filter_var(\theme_essential_uv\toolbox::get_setting('helplink'),
                         FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED)) {
-                $branchurl = \theme_essential\toolbox::get_setting('helplink');
+                $branchurl = \theme_essential_uv\toolbox::get_setting('helplink');
                 $target = '_blank';
-            } else if ((!\theme_essential\toolbox::get_setting('helplink')) &&
+            } else if ((!\theme_essential_uv\toolbox::get_setting('helplink')) &&
                 (filter_var($CFG->supportpage, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED))) {
                 $branchurl = $CFG->supportpage;
                 $target = '_blank';
             } else if (is_siteadmin()) {
-                $branchurl = preg_replace("(https?:)", "", $CFG->wwwroot).'/admin/settings.php?section=theme_essential_header';
+                $branchurl = preg_replace("(https?:)", "", $CFG->wwwroot).'/admin/settings.php?section=theme_essential_uv_header';
                 $branchlabel = '<em>'.$this->getfontawesomemarkup('exclamation-triangle', array('red')).
                     get_string('invalidurl', 'error').'</em>';
             }
@@ -1708,7 +1708,7 @@ class core_renderer extends \core_renderer {
      * @param integer $context
      * @return string $preferences
      */
-    protected function theme_essential_render_preferences($context) {
+    protected function theme_essential_uv_render_preferences($context) {
         global $USER, $CFG;
         $label = '<em>'.$this->getfontawesomemarkup('cog').get_string('preferences').'</em>';
         $preferences = html_writer::start_tag('li', array('class' => 'dropdown-submenu preferences'));
@@ -1742,7 +1742,7 @@ class core_renderer extends \core_renderer {
         }
         if ($CFG->enablebadges && has_capability('moodle/badges:manageownbadges', $context)) {
             $branchlabel = '<em>'.$this->getfontawesomemarkup('certificate').
-                get_string('badgepreferences', 'theme_essential').'</em>';
+                get_string('badgepreferences', 'theme_essential_uv').'</em>';
             $branchurl = new moodle_url('/badges/preferences.php');
             $preferences .= html_writer::tag('li', html_writer::link($branchurl, $branchlabel));
         }
@@ -1831,8 +1831,8 @@ class core_renderer extends \core_renderer {
         $havebutton = true;
         $html = '';
         if ($this->page->user_allowed_editing()) {
-            if ((\theme_essential\toolbox::get_setting('displayeditingmenu')) &&
-                (\theme_essential\toolbox::get_setting('hidedefaulteditingbutton'))) {
+            if ((\theme_essential_uv\toolbox::get_setting('displayeditingmenu')) &&
+                (\theme_essential_uv\toolbox::get_setting('hidedefaulteditingbutton'))) {
                 // No button.
                 $havebutton = false;
             }
@@ -1857,7 +1857,7 @@ class core_renderer extends \core_renderer {
     }
 
     public function render_social_network($socialnetwork) {
-        if (\theme_essential\toolbox::get_setting($socialnetwork)) {
+        if (\theme_essential_uv\toolbox::get_setting($socialnetwork)) {
             $icon = $socialnetwork;
             if ($socialnetwork === 'googleplus') {
                 $icon = 'google-plus';
@@ -1869,10 +1869,10 @@ class core_renderer extends \core_renderer {
                 $icon = 'windows';
             }
             $socialhtml = html_writer::start_tag('li');
-            $socialnetworklabel = get_string($socialnetwork, 'theme_essential');
+            $socialnetworklabel = get_string($socialnetwork, 'theme_essential_uv');
             $socialhtml .= html_writer::start_tag('button', array('type' => "button",
                 'class' => 'socialicon ' . $socialnetwork,
-                'onclick' => "window.open('".\theme_essential\toolbox::get_setting($socialnetwork)."')",
+                'onclick' => "window.open('".\theme_essential_uv\toolbox::get_setting($socialnetwork)."')",
                 'title' => $socialnetworklabel,
                 'aria-label' => $socialnetworklabel,
             ));
@@ -1899,7 +1899,7 @@ class core_renderer extends \core_renderer {
      *                                                then use the setting name to get the blocks per row.
      * @return string HTML.
      */
-    public function essential_blocks($region, $classes = array(), $tag = 'aside', $blocksperrowsetting = false) {
+    public function essential_uv_blocks($region, $classes = array(), $tag = 'aside', $blocksperrowsetting = false) {
         if ($this->page->blocks->is_known_region($region)) {
             $classes = (array) $classes;
             $classes[] = 'block-region';
@@ -1907,7 +1907,7 @@ class core_renderer extends \core_renderer {
                 if (is_int($blocksperrowsetting)) {
                     $blocksperrow = $blocksperrowsetting;
                 } else {
-                    $blocksperrow = \theme_essential\toolbox::get_setting($blocksperrowsetting);
+                    $blocksperrow = \theme_essential_uv\toolbox::get_setting($blocksperrowsetting);
                 }
             } else {
                 $blocksperrow = false;
@@ -1922,16 +1922,16 @@ class core_renderer extends \core_renderer {
             $regioncontent = '';
             $flatnavigation = false;
             $flatnavigationcontent = '';
-            if ((\theme_essential\toolbox::get_setting('flatnavigation')) && ($region == 'side-pre')) {
+            if ((\theme_essential_uv\toolbox::get_setting('flatnavigation')) && ($region == 'side-pre')) {
                 global $PAGE;
                 $templatecontext = array('flatnavigation' => $PAGE->flatnav);
-                $flatnavigationcontent = $this->render_from_template('theme_essential/flat_navigation', $templatecontext);
+                $flatnavigationcontent = $this->render_from_template('theme_essential_uv/flat_navigation', $templatecontext);
                 $attributes['data-region'] = 'drawer';
                 $flatnavigation = true;
             }
             $editing = $this->page->user_is_editing();
             if ($editing) {
-                $regioncontent .= html_writer::tag('span', html_writer::tag('span', get_string('region-'.$region, 'theme_essential')),
+                $regioncontent .= html_writer::tag('span', html_writer::tag('span', get_string('region-'.$region, 'theme_essential_uv')),
                     array('class' => 'regionname'));
             }
 
@@ -1942,10 +1942,10 @@ class core_renderer extends \core_renderer {
                         $attributes['class'] .= ' rowblock-edit';
                     }
                     $regioncontent .= $flatnavigationcontent;
-                    $regioncontent .= $this->essential_blocks_for_region($region, $blocksperrow, $editing, $flatnavigation);
+                    $regioncontent .= $this->essential_uv_blocks_for_region($region, $blocksperrow, $editing, $flatnavigation);
                     $output = html_writer::tag($tag, $regioncontent, $attributes);
                 } else if ($flatnavigation) {
-                    $regioncontent .= $this->essential_flatnav_blocks_for_region($region, $flatnavigationcontent);
+                    $regioncontent .= $this->essential_uv_flatnav_blocks_for_region($region, $flatnavigationcontent);
                     $output = html_writer::tag($tag, $regioncontent, $attributes);
                 } else {
                     $regioncontent .= $this->blocks_for_region($region);
@@ -1976,7 +1976,7 @@ class core_renderer extends \core_renderer {
      * @return string
      */
     public function body_css_classes(array $additionalclasses = array()) {
-        $flatnavigation = \theme_essential\toolbox::get_setting('flatnavigation');
+        $flatnavigation = \theme_essential_uv\toolbox::get_setting('flatnavigation');
         // Add a class for each block region on the page.
         // We use the block manager here because the theme object makes get_string calls.
         $usedregions = array();
@@ -2021,7 +2021,7 @@ class core_renderer extends \core_renderer {
      * @param boolean $hidenavset Do not show the navigation or settings blocks.
      * @return string the HTML to be output.
      */
-    protected function essential_blocks_for_region($region, $blocksperrow, $editing, $hidenavset) {
+    protected function essential_uv_blocks_for_region($region, $blocksperrow, $editing, $hidenavset) {
         $blockcontents = $this->page->blocks->get_content_for_region($region, $this);
         $output = '';
 
@@ -2129,7 +2129,7 @@ class core_renderer extends \core_renderer {
      * @param string $flatnavigationcontent Flat navigation content passed in so that we may show any fake blocks first.
      * @return string the HTML to be output.
      */
-    public function essential_flatnav_blocks_for_region($region, $flatnavigationcontent) {
+    public function essential_uv_flatnav_blocks_for_region($region, $flatnavigationcontent) {
         $blockcontents = $this->page->blocks->get_content_for_region($region, $this);
         $blocks = $this->page->blocks->get_blocks_for_region($region);
         $lastblock = null;
@@ -2262,17 +2262,17 @@ class core_renderer extends \core_renderer {
         return $output;
     }
 
-    // Essential custom bits.
-    public function essential_marketing_button($spot) {
+    // essential_uv custom bits.
+    public function essential_uv_marketing_button($spot) {
         $o = '';
-        $url = \theme_essential\toolbox::get_setting('marketing'.$spot.'buttonurl');
+        $url = \theme_essential_uv\toolbox::get_setting('marketing'.$spot.'buttonurl');
         if (!empty($url)) {
             $url = '<a href="'.$url.'" ';
-            $url .= 'target="'.\theme_essential\toolbox::get_setting('marketing'.$spot.'target').'" class="marketing-button">';
-            $url .= \theme_essential\toolbox::get_setting('marketing'.$spot.'buttontext', true);
+            $url .= 'target="'.\theme_essential_uv\toolbox::get_setting('marketing'.$spot.'target').'" class="marketing-button">';
+            $url .= \theme_essential_uv\toolbox::get_setting('marketing'.$spot.'buttontext', true);
             $url .= '</a>';
         }
-        $edit = $this->essential_edit_button('frontpage');
+        $edit = $this->essential_uv_edit_button('frontpage');
         if ((!empty($url)) || (!empty($edit))) {
             $o = '<div class="marketing-buttons">'.$url.$edit.'</div>';
         }
@@ -2283,17 +2283,17 @@ class core_renderer extends \core_renderer {
     /**
      * Generates the edit button markup.
      *
-     * Ensure that the 'essential_edit_button_settingspage' method has the 'keys' and values for the sections
+     * Ensure that the 'essential_uv_edit_button_settingspage' method has the 'keys' and values for the sections
      * in the settings.php file of the theme that the layout and tile files call this method for.
      *
      * @param string $sectionkey settings section key.
      * @param string $buttontext optional button text.
      * @return string or null of not needed.
      */
-    public function essential_edit_button($sectionkey, $buttontext = null) {
+    public function essential_uv_edit_button($sectionkey, $buttontext = null) {
         global $CFG;
         if ($this->page->user_is_editing() && is_siteadmin()) {
-            $themesectionkey = $this->essential_edit_button_settingspage($sectionkey);
+            $themesectionkey = $this->essential_uv_edit_button_settingspage($sectionkey);
             if (is_null($buttontext)) {
                 $buttontext = get_string('edit');
             }
@@ -2308,23 +2308,23 @@ class core_renderer extends \core_renderer {
      * Finds the setting section for the given section key.
      *
      * This must match the ones in the settings.php file of the theme that the layout and tile files
-     * call the 'essential_edit_button' method for.
+     * call the 'essential_uv_edit_button' method for.
      *
      * @param string $sectionkey settings section key.
      * @return string or false if not found.
      */
-    protected function essential_edit_button_settingspage($sectionkey) {
+    protected function essential_uv_edit_button_settingspage($sectionkey) {
         $themesectionkey = false;
 
         switch ($sectionkey) {
             case 'frontpage':
-                $themesectionkey = 'theme_essential_frontpage';
+                $themesectionkey = 'theme_essential_uv_frontpage';
             break;
             case 'footer':
-                $themesectionkey = 'theme_essential_footer';
+                $themesectionkey = 'theme_essential_uv_footer';
             break;
             case 'slideshow':
-                $themesectionkey = 'theme_essential_slideshow';
+                $themesectionkey = 'theme_essential_uv_slideshow';
             break;
         }
 
@@ -2335,7 +2335,7 @@ class core_renderer extends \core_renderer {
         global $SITE;
         $title = '';
         if ($location === 'navbar') {
-            switch (\theme_essential\toolbox::get_setting('navbartitle')) {
+            switch (\theme_essential_uv\toolbox::get_setting('navbartitle')) {
                 case 0:
                     return false;
                 break;
@@ -2356,7 +2356,7 @@ class core_renderer extends \core_renderer {
                     break;
             }
         } else if ($location === 'header') {
-            switch (\theme_essential\toolbox::get_setting('headertitle')) {
+            switch (\theme_essential_uv\toolbox::get_setting('headertitle')) {
                 case 0:
                     return false;
                     break;
@@ -2405,7 +2405,7 @@ class core_renderer extends \core_renderer {
         $html = html_writer::start_tag('div', array('class' => 'container-fluid performanceinfo'));
         $html .= html_writer::start_tag('div', array('class' => 'row-fluid'));
         $html .= html_writer::start_tag('div', array('class' => 'span12'));
-        $html .= html_writer::tag('h2', get_string('perfinfoheading', 'theme_essential'));
+        $html .= html_writer::tag('h2', get_string('perfinfoheading', 'theme_essential_uv'));
         $html .= html_writer::end_tag('div');
         $html .= html_writer::end_tag('div');
         $html .= html_writer::start_tag('div', array('class' => 'row-fluid'));
@@ -2428,28 +2428,28 @@ class core_renderer extends \core_renderer {
                 $html .= html_writer::start_tag('div', array('class' => 'span'.$thespan));
                 $html .= html_writer::tag('var', $this->getfontawesomemarkup('clock-o').
                     round($param['realtime'], 2).' '.get_string('seconds'), array('id' => 'load'));
-                $html .= html_writer::span(get_string('loadtime', 'theme_essential'));
+                $html .= html_writer::span(get_string('loadtime', 'theme_essential_uv'));
                 $html .= html_writer::end_tag('div');
             }
             if (isset($param['memory_total'])) {
                 $html .= html_writer::start_tag('div', array('class' => 'span'.$thespan));
                 $html .= html_writer::tag('var', $this->getfontawesomemarkup('tachometer').
                     display_size($param['memory_total']), array('id' => 'memory'));
-                $html .= html_writer::span(get_string('memused', 'theme_essential'));
+                $html .= html_writer::span(get_string('memused', 'theme_essential_uv'));
                 $html .= html_writer::end_tag('div');
             }
             if (isset($param['includecount'])) {
                 $html .= html_writer::start_tag('div', array('class' => 'span'.$thespan));
                 $html .= html_writer::tag('var', $this->getfontawesomemarkup('stackoverflow').
                     $param['includecount'], array('id' => 'included'));
-                $html .= html_writer::span(get_string('included', 'theme_essential'));
+                $html .= html_writer::span(get_string('included', 'theme_essential_uv'));
                 $html .= html_writer::end_tag('div');
             }
             if (isset($param['dbqueries'])) {
                 $html .= html_writer::start_tag('div', array('class' => 'span'.$thespan));
                 $html .= html_writer::tag('var', $this->getfontawesomemarkup('trello').
                     $param['dbqueries'], array('id' => 'dbqueries'));
-                $html .= html_writer::span(get_string('dbqueries', 'theme_essential'));
+                $html .= html_writer::span(get_string('dbqueries', 'theme_essential_uv'));
                 $html .= html_writer::end_tag('div');
             }
         }
@@ -2458,7 +2458,7 @@ class core_renderer extends \core_renderer {
             $html .= html_writer::empty_tag('hr');
             $html .= html_writer::start_tag('div', array('class' => 'row-fluid'));
             $html .= html_writer::start_tag('div', array('class' => 'span12'));
-            $html .= html_writer::tag('h2', get_string('extperfinfoheading', 'theme_essential'));
+            $html .= html_writer::tag('h2', get_string('extperfinfoheading', 'theme_essential_uv'));
             $html .= html_writer::end_tag('div');
             $html .= html_writer::end_tag('div');
             $html .= html_writer::start_tag('div', array('class' => 'row-fluid'));
@@ -2484,35 +2484,35 @@ class core_renderer extends \core_renderer {
                     $html .= html_writer::start_tag('div', array('class' => 'span'.$thespanmax));
                     $html .= html_writer::tag('var', $this->getfontawesomemarkup('clock-o').
                         $param['serverload'], array('id' => 'load'));
-                    $html .= html_writer::span(get_string('serverload', 'theme_essential'));
+                    $html .= html_writer::span(get_string('serverload', 'theme_essential_uv'));
                     $html .= html_writer::end_tag('div');
                 }
                 if (isset($param['memory_peak'])) {
                     $html .= html_writer::start_tag('div', array('class' => 'span'.$thespanmax));
                     $html .= html_writer::tag('var', $this->getfontawesomemarkup('tachometer').
                         display_size($param['memory_peak']), array('id' => 'peakmemory'));
-                    $html .= html_writer::span(get_string('peakmem', 'theme_essential'));
+                    $html .= html_writer::span(get_string('peakmem', 'theme_essential_uv'));
                     $html .= html_writer::end_tag('div');
                 }
                 if (isset($param['cachesused'])) {
                     $html .= html_writer::start_tag('div', array('class' => 'span'.$thespanmax));
                     $html .= html_writer::tag('var', $this->getfontawesomemarkup('paw').
                         $param['cachesused'], array('id' => 'cache'));
-                    $html .= html_writer::span(get_string('cachesused', 'theme_essential'));
+                    $html .= html_writer::span(get_string('cachesused', 'theme_essential_uv'));
                     $html .= html_writer::end_tag('div');
                 }
                 if (isset($param['sessionsize'])) {
                     $html .= html_writer::start_tag('div', array('class' => 'span'.$thespanmax));
                     $html .= html_writer::tag('var', $this->getfontawesomemarkup('tachometer').
                         $param['sessionsize'], array('id' => 'session'));
-                    $html .= html_writer::span(get_string('sessionsize', 'theme_essential'));
+                    $html .= html_writer::span(get_string('sessionsize', 'theme_essential_uv'));
                     $html .= html_writer::end_tag('div');
                 }
                 if (isset($param['dbtime'])) {
                     $html .= html_writer::start_tag('div', array('class' => 'span'.$thespanmax));
                     $html .= html_writer::tag('var', $this->getfontawesomemarkup('trello').
                         $param['dbtime'], array('id' => 'dbtime'));
-                    $html .= html_writer::span(get_string('dbtime', 'theme_essential'));
+                    $html .= html_writer::span(get_string('dbtime', 'theme_essential_uv'));
                     $html .= html_writer::end_tag('div');
                 }
             }
@@ -2543,9 +2543,9 @@ class core_renderer extends \core_renderer {
             $result .= '<a class="close" data-dismiss="alert" href="'.$this->page->url.'">'.$this->getfontawesomemarkup('times-circle').'</a>';
             $result .= $this->getfontawesomemarkup('stack', array(), array(), $this->getfontawesomemarkup('square',
                 array('fa-stack-2x')).$this->getfontawesomemarkup('warning', array('fa-stack-1x', 'fa-inverse')));
-            $result .= '<span class="title">'.get_string('versionalerttitle', 'theme_essential').'</span><br />'.
-                get_string('versionalerttext1', 'theme_essential').'<br />'.
-                get_string('versionalerttext2', 'theme_essential');
+            $result .= '<span class="title">'.get_string('versionalerttitle', 'theme_essential_uv').'</span><br />'.
+                get_string('versionalerttext1', 'theme_essential_uv').'<br />'.
+                get_string('versionalerttext2', 'theme_essential_uv');
             $result .= '</div>';
         }
 
@@ -2556,7 +2556,7 @@ class core_renderer extends \core_renderer {
      * Returns the url of the custom favicon.
      */
     public function favicon() {
-        $favicon = \theme_essential\toolbox::get_setting('favicon', 'format_file_url');
+        $favicon = \theme_essential_uv\toolbox::get_setting('favicon', 'format_file_url');
 
         if (empty($favicon)) {
             return $this->page->theme->image_url('favicon', 'theme');
