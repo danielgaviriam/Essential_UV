@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-class essential_admin_setting_putprops extends admin_setting_configtextarea {
+class essential_uv_admin_setting_putprops extends admin_setting_configtextarea {
 
     /** @var string Name of the theme. */
     private $themename;
