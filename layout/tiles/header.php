@@ -27,7 +27,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once(\theme_essential\toolbox::get_tile_file('pagesettings'));
+require_once(\theme_essential_uv\toolbox::get_tile_file('pagesettings'));
 
 echo $OUTPUT->doctype();
 ?>
@@ -40,11 +40,11 @@ echo $OUTPUT->doctype();
     ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google web fonts -->
-    <?php require_once(\theme_essential\toolbox::get_tile_file('fonts')); ?>
+    <?php require_once(\theme_essential_uv\toolbox::get_tile_file('fonts')); ?>
     <!-- iOS Homescreen Icons -->
-    <?php require_once(\theme_essential\toolbox::get_tile_file('iosicons')); ?>
+    <?php require_once(\theme_essential_uv\toolbox::get_tile_file('iosicons')); ?>
     <!-- Start Analytics -->
-    <?php require_once(\theme_essential\toolbox::get_tile_file('analytics')); ?>
+    <?php require_once(\theme_essential_uv\toolbox::get_tile_file('analytics')); ?>
     <!-- End Analytics -->
 </head>
 
@@ -55,7 +55,7 @@ echo $OUTPUT->doctype();
 <header role="banner">
 <?php
 if (!$oldnavbar) {
-    require_once(\theme_essential\toolbox::get_tile_file('navbar'));
+    require_once(\theme_essential_uv\toolbox::get_tile_file('navbar'));
 }
 ?>
     <div id="page-header" class="clearfix<?php echo ($oldnavbar) ? ' oldnavbar' : ''; echo ($haslogo) ? ' logo' : ' nologo'; ?>">
@@ -65,14 +65,14 @@ if (!$oldnavbar) {
 <?php
 if (!$haslogo) {
     echo '<div class="pull-left">';
-    $usesiteicon = \theme_essential\toolbox::get_setting('usesiteicon');
+    $usesiteicon = \theme_essential_uv\toolbox::get_setting('usesiteicon');
     $headertitle = $OUTPUT->get_title('header');
     if ($usesiteicon || $headertitle) {
         echo '<a class="textlogo" href="';
         echo preg_replace("(https?:)", "", $CFG->wwwroot);
         echo '">';
         if ($usesiteicon) {
-            echo '<span id="headerlogo" aria-hidden="true" class="fa fa-'.\theme_essential\toolbox::get_setting('siteicon').'"></span>';
+            echo '<span id="headerlogo" aria-hidden="true" class="fa fa-'.\theme_essential_uv\toolbox::get_setting('siteicon').'"></span>';
         }
         if ($headertitle) {
             echo '<div class="titlearea">'.$headertitle.'</div>';
@@ -82,7 +82,7 @@ if (!$haslogo) {
 } else {
     echo '<div class="pull-left logo-container">';
     echo '<a class="logo" href="'.preg_replace("(https?:)", "", $CFG->wwwroot).'" title="'.get_string('home').'">';
-    echo '<img src="'.\theme_essential\toolbox::get_setting('logo', 'format_file_url').'" class="img-responsive" />';
+    echo '<img src="'.\theme_essential_uv\toolbox::get_setting('logo', 'format_file_url').'" class="img-responsive" />';
     echo '</a>';
 }
 ?>
@@ -102,7 +102,7 @@ if (!$haslogo) {
 if ($hassocialnetworks) {
 ?>
                         <div class="pull-right" id="socialnetworks">
-                            <p class="socialheading"><?php echo get_string('socialnetworks', 'theme_essential') ?></p>
+                            <p class="socialheading"><?php echo get_string('socialnetworks', 'theme_essential_uv') ?></p>
                             <ul class="socials unstyled">
                                 <?php
                                 echo $OUTPUT->render_social_network('googleplus');
@@ -124,7 +124,7 @@ if ($hassocialnetworks) {
                     // If true, displays the heading and available social links; displays nothing if false.
 if ($hasmobileapps) { ?>
                         <div class="pull-right" id="mobileapps">
-                            <p class="socialheading"><?php echo get_string('mobileappsheading', 'theme_essential') ?></p>
+                            <p class="socialheading"><?php echo get_string('mobileappsheading', 'theme_essential_uv') ?></p>
                             <ul class="socials unstyled">
                                 <?php
                                 echo $OUTPUT->render_social_network('ios');
@@ -147,7 +147,7 @@ if ($hassocialnetworks || $hasmobileapps) {
     </div>
 <?php
 if ($oldnavbar) {
-    require_once(\theme_essential\toolbox::get_tile_file('navbar'));
+    require_once(\theme_essential_uv\toolbox::get_tile_file('navbar'));
 }
 ?>
 </header>

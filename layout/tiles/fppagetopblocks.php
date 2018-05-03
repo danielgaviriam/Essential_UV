@@ -24,4 +24,4 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-echo $OUTPUT->essential_blocks('page-top', 'row-fluid', 'aside', 'fppagetopblocksperrow');
+echo $OUTPUT->essential_uv_blocks('page-top', 'row-fluid', 'aside', 'fppagetopblocksperrow');

@@ -33,11 +33,11 @@ $additionalmarketingcontentclass = false;
 $spotbutton = array();
 
 for ($mspot = 1; $mspot <= 3; $mspot++) {
-    $spotimage[$mspot] = \theme_essential\toolbox::get_setting('marketing'.$mspot.'image');
+    $spotimage[$mspot] = \theme_essential_uv\toolbox::get_setting('marketing'.$mspot.'image');
     if ($spotimage[$mspot]) {
         $additionalmarketingclass = true;
     }
-    $spotbutton[$mspot] = $OUTPUT->essential_marketing_button($mspot);
+    $spotbutton[$mspot] = $OUTPUT->essential_uv_marketing_button($mspot);
     if ($spotbutton[$mspot]) {
         $additionalmarketingcontentclass = true;
     }
@@ -52,8 +52,8 @@ for ($mspot = 1; $mspot <= 3; $mspot++) {
         <div class="marketing-spot span4">
             <div class="title"><h5><span>
                 <span aria-hidden="true" class="fa fa-<?php
-                    echo \theme_essential\toolbox::get_setting('marketing'.$mspot.'icon'); ?>"></span>
-                <?php echo \theme_essential\toolbox::get_setting('marketing'.$mspot, true); ?>
+                    echo \theme_essential_uv\toolbox::get_setting('marketing'.$mspot.'icon'); ?>"></span>
+                <?php echo \theme_essential_uv\toolbox::get_setting('marketing'.$mspot, true); ?>
             </span></h5></div>
             <?php if ($spotimage[$mspot]) { ?>
                 <div class="marketing-image-container">
@@ -64,7 +64,7 @@ for ($mspot = 1; $mspot <= 3; $mspot++) {
 ?>
             <div class="content<?php echo ($additionalmarketingcontentclass) ? ' withbutton' : ''; ?>">
                 <?php
-                    echo \theme_essential\toolbox::get_setting('marketing'.$mspot.'content', 'format_html');
+                    echo \theme_essential_uv\toolbox::get_setting('marketing'.$mspot.'content', 'format_html');
                     echo $spotbutton[$mspot];
                 ?>
             </div>

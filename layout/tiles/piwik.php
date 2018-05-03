@@ -31,7 +31,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-function theme_essential_analytics_trackurl() {
+function theme_essential_uv_analytics_trackurl() {
     global $DB, $PAGE;
     $pageinfo = get_context_info_array($PAGE->context->id);
     // Adds page title.
@@ -73,16 +73,16 @@ function theme_essential_analytics_trackurl() {
     return $trackurl;
 }
 
-function theme_essential_insert_analytics_tracking() {
-    $siteurl = \theme_essential\toolbox::get_setting('analyticssiteurl');
+function theme_essential_uv_insert_analytics_tracking() {
+    $siteurl = \theme_essential_uv\toolbox::get_setting('analyticssiteurl');
     $tracking = '';
 
     if (!empty($siteurl)) {
-        $imagetrack = \theme_essential\toolbox::get_setting('analyticsimagetrack');
-        $siteid = \theme_essential\toolbox::get_setting('analyticssiteid');
-        $trackadmin = \theme_essential\toolbox::get_setting('analyticstrackadmin');
-        $useuserid = \theme_essential\toolbox::get_setting('analyticsuseuserid');
-        $cleanurl = \theme_essential\toolbox::get_setting('analyticscleanurl');
+        $imagetrack = \theme_essential_uv\toolbox::get_setting('analyticsimagetrack');
+        $siteid = \theme_essential_uv\toolbox::get_setting('analyticssiteid');
+        $trackadmin = \theme_essential_uv\toolbox::get_setting('analyticstrackadmin');
+        $useuserid = \theme_essential_uv\toolbox::get_setting('analyticsuseuserid');
+        $cleanurl = \theme_essential_uv\toolbox::get_setting('analyticscleanurl');
 
         if ($imagetrack) {
             $addition = '<noscript><p><img src="//'.$siteurl.'/piwik.php?idsite='.$siteid;
@@ -103,7 +103,7 @@ function theme_essential_insert_analytics_tracking() {
         }
 
         if ($cleanurl) {
-            $doctitle = "".PHP_EOL."_paq.push(['setDocumentTitle', " . theme_essential_analytics_trackurl() . "]);";
+            $doctitle = "".PHP_EOL."_paq.push(['setDocumentTitle', " . theme_essential_uv_analytics_trackurl() . "]);";
         } else {
             $doctitle = "";
         }
@@ -133,4 +133,4 @@ _paq.push(['trackPageView']);
     return $tracking;
 }
 
-echo theme_essential_insert_analytics_tracking();
+echo theme_essential_uv_insert_analytics_tracking();

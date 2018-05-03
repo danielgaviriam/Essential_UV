@@ -24,4 +24,4 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-echo $OUTPUT->essential_blocks('home', 'row-fluid', 'aside', 'frontpagehomeblocksperrow');
+echo $OUTPUT->essential_uv_blocks('home', 'row-fluid', 'aside', 'frontpagehomeblocksperrow');

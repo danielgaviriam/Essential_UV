@@ -43,4 +43,4 @@ if (!$left) {
 echo '</div>';
 echo $OUTPUT->page_top_header();
 echo '</div>';
-echo $OUTPUT->essential_blocks('header', 'row-fluid', 'aside', 'headerblocksperrow');
+echo $OUTPUT->essential_uv_blocks('header', 'row-fluid', 'aside', 'headerblocksperrow');

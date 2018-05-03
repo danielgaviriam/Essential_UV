@@ -26,31 +26,31 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$PAGE->requires->js_call_amd('theme_essential/header', 'init');
-$PAGE->requires->js_call_amd('theme_essential/footer', 'init');
-if (\theme_essential\toolbox::not_lte_ie9()) {
-    $oldnavbar = \theme_essential\toolbox::get_setting('oldnavbar');
-    $PAGE->requires->js_call_amd('theme_essential/navbar', 'init', array('data' => array('oldnavbar' => $oldnavbar)));
+$PAGE->requires->js_call_amd('theme_essential_uv/header', 'init');
+$PAGE->requires->js_call_amd('theme_essential_uv/footer', 'init');
+if (\theme_essential_uv\toolbox::not_lte_ie9()) {
+    $oldnavbar = \theme_essential_uv\toolbox::get_setting('oldnavbar');
+    $PAGE->requires->js_call_amd('theme_essential_uv/navbar', 'init', array('data' => array('oldnavbar' => $oldnavbar)));
     if ($oldnavbar) {
         // Only need this to change the classes when scrolling when the navbar is in the old position.
-        $PAGE->requires->js_call_amd('theme_essential/affix', 'init');
+        $PAGE->requires->js_call_amd('theme_essential_uv/affix', 'init');
     }
-    $breadcrumbstyle = \theme_essential\toolbox::get_setting('breadcrumbstyle');
+    $breadcrumbstyle = \theme_essential_uv\toolbox::get_setting('breadcrumbstyle');
     if ($PAGE->pagelayout == 'course') {
-        $PAGE->requires->js_call_amd('theme_essential/course_navigation', 'init');
+        $PAGE->requires->js_call_amd('theme_essential_uv/course_navigation', 'init');
     }
     if ($breadcrumbstyle == '1') {
-        $PAGE->requires->js_call_amd('theme_essential/jBreadCrumb', 'init');
+        $PAGE->requires->js_call_amd('theme_essential_uv/jBreadCrumb', 'init');
     }
-    if (\theme_essential\toolbox::get_setting('fitvids')) {
-        $PAGE->requires->js_call_amd('theme_essential/fitvids', 'init');
+    if (\theme_essential_uv\toolbox::get_setting('fitvids')) {
+        $PAGE->requires->js_call_amd('theme_essential_uv/fitvids', 'init');
     }
 }
 if ($PAGE->pagelayout == 'mydashboard') {
-    if (\theme_essential\toolbox::course_content_search()) {
-        $essentialsearch = new moodle_url('/theme/essential/inspector.ajax.php');
-        $essentialsearch->param('sesskey', sesskey());
-        $inspectorscourerdata = array('data' => array('theme' => $essentialsearch->out(false)));
-        $PAGE->requires->js_call_amd('theme_essential/inspector_scourer', 'init', $inspectorscourerdata);
+    if (\theme_essential_uv\toolbox::course_content_search()) {
+        $essential_uvsearch = new moodle_url('/theme/essential_uv/inspector.ajax.php');
+        $essential_uvsearch->param('sesskey', sesskey());
+        $inspectorscourerdata = array('data' => array('theme' => $essential_uvsearch->out(false)));
+        $PAGE->requires->js_call_amd('theme_essential_uv/inspector_scourer', 'init', $inspectorscourerdata);
     }
 }

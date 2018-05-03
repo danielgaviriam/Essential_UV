@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$coursetitleposition = \theme_essential\toolbox::get_setting('coursetitleposition');
+$coursetitleposition = \theme_essential_uv\toolbox::get_setting('coursetitleposition');
 if (empty($coursetitleposition)) {
     $coursetitleposition = 'within';
 }
@@ -39,8 +39,8 @@ if ($pagebottomregion) {
 } else {
     echo '<div id="content" class="span9">';
 }
-if (\theme_essential\toolbox::get_setting('pagetopblocks')) {
-    echo $OUTPUT->essential_blocks('page-top', 'row-fluid', 'aside', 'pagetopblocksperrow');
+if (\theme_essential_uv\toolbox::get_setting('pagetopblocks')) {
+    echo $OUTPUT->essential_uv_blocks('page-top', 'row-fluid', 'aside', 'pagetopblocksperrow');
 }
 echo '<section id="region-main">';
 if ($coursetitleposition == 'within') {
@@ -55,8 +55,8 @@ echo '</section>';
 echo '</div>';
 if (!$pagebottomregion) {
     if ((($hasboringlayout) && ($left)) || ((!$hasboringlayout) && (!$left))) {
-        echo $OUTPUT->essential_blocks('side-pre', 'span3 desktop-first-column');
+        echo $OUTPUT->essential_uv_blocks('side-pre', 'span3 desktop-first-column');
     } else {
-        echo $OUTPUT->essential_blocks('side-pre', 'span3');
+        echo $OUTPUT->essential_uv_blocks('side-pre', 'span3');
     }
 }

@@ -26,11 +26,11 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-if (\theme_essential\toolbox::get_setting('analyticsenabled')) {
-    $analytics = \theme_essential\toolbox::get_setting('analytics');
+if (\theme_essential_uv\toolbox::get_setting('analyticsenabled')) {
+    $analytics = \theme_essential_uv\toolbox::get_setting('analytics');
     if ($analytics === "piwik") {
-        require_once(\theme_essential\toolbox::get_tile_file('piwik'));
+        require_once(\theme_essential_uv\toolbox::get_tile_file('piwik'));
     } else if ($analytics === "guniversal") {
-        require_once(\theme_essential\toolbox::get_tile_file('guniversal'));
+        require_once(\theme_essential_uv\toolbox::get_tile_file('guniversal'));
     }
 }

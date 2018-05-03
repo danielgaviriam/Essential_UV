@@ -29,16 +29,16 @@ defined('MOODLE_INTERNAL') || die;
 if (empty($PAGE->layout_options['nofooter'])) { ?>
     <footer role="contentinfo" id="page-footer">
         <div class="container-fluid">
-            <?php echo $OUTPUT->essential_edit_button('footer'); ?>
+            <?php echo $OUTPUT->essential_uv_edit_button('footer'); ?>
             <div class="row-fluid footerblocks">
                 <div class="footerblock span4">
-                    <?php echo $OUTPUT->essential_blocks('footer-left'); ?>
+                    <?php echo $OUTPUT->essential_uv_blocks('footer-left'); ?>
                 </div>
                 <div class="footerblock span4">
-                    <?php echo $OUTPUT->essential_blocks('footer-middle'); ?>
+                    <?php echo $OUTPUT->essential_uv_blocks('footer-middle'); ?>
                 </div>
                 <div class="footerblock span4">
-                    <?php echo $OUTPUT->essential_blocks('footer-right'); ?>
+                    <?php echo $OUTPUT->essential_uv_blocks('footer-right'); ?>
                 </div>
             </div>
             <div class="footerlinks row-fluid">
@@ -59,7 +59,7 @@ if (empty($PAGE->layout_options['nofooter'])) { ?>
             </div>
         </div>
     </footer>
-    <a href="#top" class="back-to-top" aria-label="<?php echo get_string('backtotop', 'theme_essential'); ?>">
+    <a href="#top" class="back-to-top" aria-label="<?php echo get_string('backtotop', 'theme_essential_uv'); ?>">
         <span aria-hidden="true" class="fa fa-angle-up "></span></a>
 <?php }
 echo $OUTPUT->standard_end_of_body_html();
