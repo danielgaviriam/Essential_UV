@@ -18,7 +18,7 @@
  * Integer admin setting with lower and upper limits.
  *
  * @package    theme
- * @subpackage essential
+ * @subpackage essential_uv
  * @copyright  &copy; 2014-onwards G J Barnard.
  * @author     G J Barnard - {@link http://moodle.org/user/profile.php?id=442195}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-class essential_admin_setting_configinteger extends admin_setting_configtext {
+class essential_uv_admin_setting_configinteger extends admin_setting_configtext {
 
     /** @var int lower range limit */
     public $lower;
@@ -70,15 +70,15 @@ class essential_admin_setting_configinteger extends admin_setting_configtext {
      */
     public function validate($data) {
         if (!is_number($data)) {
-            $validated = get_string('asconfigintnan', 'theme_essential', array('value' => $data));
+            $validated = get_string('asconfigintnan', 'theme_essential_uv', array('value' => $data));
         } else {
             $validated = parent::validate($data); // Pass parent validation first.
 
             if ($validated == true) {
                 if ($data < $this->lower) {
-                    $validated = get_string('asconfigintlower', 'theme_essential', array('value' => $data, 'lower' => $this->lower));
+                    $validated = get_string('asconfigintlower', 'theme_essential_uv', array('value' => $data, 'lower' => $this->lower));
                 } else if ($data > $this->upper) {
-                     $validated = get_string('asconfigintupper', 'theme_essential', array('value' => $data, 'upper' => $this->upper));
+                     $validated = get_string('asconfigintupper', 'theme_essential_uv', array('value' => $data, 'upper' => $this->upper));
                 } else {
                     $validated = true;
                 }

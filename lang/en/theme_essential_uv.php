@@ -27,8 +27,8 @@
  */
 
 /* Core */
-$string['configtitle'] = 'Essential';
-$string['pluginname'] = 'Essential';
+$string['configtitle'] = 'Essential_uv';
+$string['pluginname'] = 'Essential_uv';
 $string['choosereadme'] = '
 <div class="clearfix">
 <div class="well">
