@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * essential_uv_uv is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
  * Overridden core maintenance renderer.
  *
@@ -24,7 +24,7 @@
  * We override it in order to style those scenarios consistently with the regular
  * bootstrap look and feel.
  *
- * @package     theme_essential_uv_uv
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2015 Gareth J Barnard
  * @copyright   2014 Gareth J Barnard, David Bezemer
@@ -40,12 +40,12 @@
  * We override it in order to style those scenarios consistently with the regular
  * bootstrap look and feel.
  *
- * @package    theme_essential_uv_uv
+ * @package    theme_essential_uv
  * @copyright  2014 Sam Hemelryk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_essential_uv_uv\output;
+namespace theme_essential_uv\output;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -61,7 +61,7 @@ class core_renderer_maintenance extends \core_renderer_maintenance {
      */
     public function __construct(\moodle_page $page, $target) {
         parent::__construct($page, $target);
-        $this->themeconfig = array(\theme_config::load('essential_uv_uv'));
+        $this->themeconfig = array(\theme_config::load('essential_uv'));
     }
 
     /**
