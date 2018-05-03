@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2014 Gareth J Barnard, David Bezemer
  * @copyright   2013 Julian Ridden
@@ -26,18 +26,18 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once(\theme_essential\toolbox::get_tile_file('additionaljs'));
-require_once(\theme_essential\toolbox::get_tile_file('header'));
+require_once(\theme_essential_uv\toolbox::get_tile_file('additionaljs'));
+require_once(\theme_essential_uv\toolbox::get_tile_file('header'));
 ?>
 
 <div id="page" class="container-fluid">
-    <?php require_once(\theme_essential\toolbox::get_tile_file('pagetopheader')); ?>
+    <?php require_once(\theme_essential_uv\toolbox::get_tile_file('pagetopheader')); ?>
     <!-- Start Main Regions -->
     <div id="page-content" class="row-fluid">
         <section id="region-main" class="span12">
             <?php
-            if (\theme_essential\toolbox::get_setting('pagetopblocks')) {
-                echo $OUTPUT->essential_blocks('page-top', 'row-fluid', 'aside', 'pagetopblocksperrow');
+            if (\theme_essential_uv\toolbox::get_setting('pagetopblocks')) {
+                echo $OUTPUT->essential_uv_blocks('page-top', 'row-fluid', 'aside', 'pagetopblocksperrow');
             }
             echo $OUTPUT->course_title();
             echo $OUTPUT->course_content_header();
@@ -51,6 +51,6 @@ require_once(\theme_essential\toolbox::get_tile_file('header'));
     <!-- End Main Regions -->
 </div>
 
-<?php require_once(\theme_essential\toolbox::get_tile_file('footer')); ?>
+<?php require_once(\theme_essential_uv\toolbox::get_tile_file('footer')); ?>
 </body>
 </html>

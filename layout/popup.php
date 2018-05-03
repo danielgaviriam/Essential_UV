@@ -26,8 +26,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once(\theme_essential\toolbox::get_tile_file('additionaljs'));
-require_once(\theme_essential\toolbox::get_tile_file('pagesettings'));
+require_once(\theme_essential_uv\toolbox::get_tile_file('additionaljs'));
+require_once(\theme_essential_uv\toolbox::get_tile_file('pagesettings'));
 
 echo $OUTPUT->doctype();
 ?>
@@ -40,9 +40,9 @@ echo $OUTPUT->doctype();
     ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google web fonts -->
-    <?php require_once(\theme_essential\toolbox::get_tile_file('fonts')); ?>
+    <?php require_once(\theme_essential_uv\toolbox::get_tile_file('fonts')); ?>
     <!-- Start Analytics -->
-    <?php require_once(\theme_essential\toolbox::get_tile_file('analytics')); ?>
+    <?php require_once(\theme_essential_uv\toolbox::get_tile_file('analytics')); ?>
     <!-- End Analytics -->
 </head>
 
@@ -85,7 +85,7 @@ if ($devicetype !== 'mobile' and $devicetype !== 'tablet') {
 <div id="page" class="container-fluid">
 
     <header id="page-header" class="clearfix">
-        <?php require_once(\theme_essential\toolbox::get_tile_file('pagetopheader'));
+        <?php require_once(\theme_essential_uv\toolbox::get_tile_file('pagetopheader'));
         echo $OUTPUT->page_heading(); ?>
         <div id="course-header">
             <?php echo $OUTPUT->course_header(); ?>

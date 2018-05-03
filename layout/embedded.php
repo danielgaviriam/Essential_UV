@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Essential is a clean and customizable theme.
+ * essential_uv is a clean and customizable theme.
  *
- * @package     theme_essential
+ * @package     theme_essential_uv
  * @copyright   2016 Gareth J Barnard
  * @copyright   2014 Gareth J Barnard, David Bezemer
  * @copyright   2013 Julian Ridden
@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once(\theme_essential\toolbox::get_tile_file('pagesettings'));
+require_once(\theme_essential_uv\toolbox::get_tile_file('pagesettings'));
 echo $OUTPUT->doctype();
 ?>
 <html <?php echo $OUTPUT->htmlattributes(); ?>>
@@ -39,9 +39,9 @@ echo $OUTPUT->doctype();
     ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google web fonts -->
-    <?php require_once(\theme_essential\toolbox::get_tile_file('fonts')); ?>
+    <?php require_once(\theme_essential_uv\toolbox::get_tile_file('fonts')); ?>
     <!-- Start Analytics -->
-    <?php require_once(\theme_essential\toolbox::get_tile_file('analytics')); ?>
+    <?php require_once(\theme_essential_uv\toolbox::get_tile_file('analytics')); ?>
     <!-- End Analytics -->
 </head>
 
